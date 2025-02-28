@@ -355,6 +355,22 @@ def get_results():
         'referenceData': reference_result,
         'comparativeData': comparative_result
     }), 200
+
+@app.route('/verificar-db', methods=['GET'])
+def verificar_db():
+    conn = get_db_connection()
+    if conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT current_database(), current_user;")
+        db_info = cursor.fetchall()
+        conn.close()
+        return jsonify({
+            "database": db_info[0][0],
+            "user": db_info[0][1]
+        }), 200
+    else:
+        return jsonify({"error": "No se pudo conectar a la base de datos"}), 500
+
 @app.route('/check-db', methods=['GET'])
 def check_db():
     conn = get_db_connection()
