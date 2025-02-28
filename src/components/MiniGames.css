@@ -1,0 +1,108 @@
+.mini-games {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: linear-gradient(135deg, #2a2a2a, #333333);
+    /* Fondo oscuro con gradiente */
+    border-radius: 15px;
+    padding: 20px;
+    /* Sombra holográfica */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mini-games:hover {
+    transform: translateY(-5px);
+    /* Efecto de levitación */
+}
+
+.mini-games h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #c5003c;
+    /* Rojo cálido para el título */
+    text-align: center;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.mini-games p {
+    font-size: 1rem;
+    color: #e0e0e0;
+    background: #444444;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    margin: 10px auto;
+}
+
+.mini-games p:hover {
+    transform: scale(1.05);
+    background-color: #c5003c;
+    border-color: #c5003c;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    /* Sombra al pasar el mouse */
+}
+
+.mini-games p:active {
+    transform: scale(0.98);
+    background-color: #357abd;
+    /* Azul oscuro */
+    border-color: #2f6a8e;
+}
+
+.mini-games p:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(72, 132, 211, 0.5);
+    /* Efecto de enfoque */
+}
+
+/* Contenedores de juegos */
+.follow-game-container,
+.reaction-game-container,
+.find-object-game-container {
+    width: 80%;
+    height: 650px;
+    margin: 0 auto;
+    background-color: #222;
+    border: 2px solid #4a90e2;
+    /* Borde cibernético */
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.2);
+    /* Resplandor cibernético */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.follow-game-container,
+.reaction-game-container,
+.find-object-game-container {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.mini-games div:has(> *) {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+
+
+.mini-games p:hover:not(.disabled) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
