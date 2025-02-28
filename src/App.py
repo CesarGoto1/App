@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")
 
 # Configuración de la conexión a la base de datos PostgreSQL
-DATABASE_URL = "postgresql://postgres:Nisemono27@localhost:5432/hikarishiftx" 
+DATABASE_URL = "postgresql://postgres:1234@localhost:5432/hikarishiftx" 
 def get_db_connection():
     try:
         conn = psycopg.connect(DATABASE_URL)
