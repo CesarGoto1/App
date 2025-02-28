@@ -16,18 +16,19 @@ CORS(app, origins="http://localhost:3000")
 DATABASE_URL = os.getenv("DATABASE_URL")
 def get_db_connection():
     try:
-        conn = psycopg.connect(DATABASE_URL)
+        conn = psycopg.connect(DATABASE_URL, sslmode="require")
         print("Conexión a la base de datos en Render exitosa.")
         return conn
     except Exception as e:
         print(f"Error al conectar a la base de datos: {e}")
         return None
 
+
 # Verificar la conexión al iniciar el servidor
 if get_db_connection() is None:
-    print("No se pudo establecer la conexión a la base de datos. El servidor no se iniciará.")
-else:
-    print("El servidor está listo para recibir peticiones.")
+    print("No se pudo establecer la conexión a la base de datos. Cerrando la aplicación.")
+    exit(1)  # Detiene la ejecución si la conexión falla
+
 
 # =====================================================
 # Ruta para registrar un nuevo usuario
@@ -354,6 +355,17 @@ def get_results():
         'referenceData': reference_result,
         'comparativeData': comparative_result
     }), 200
+@app.route('/check-db', methods=['GET'])
+def check_db():
+    conn = get_db_connection()
+    if conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT NOW();")
+        db_time = cursor.fetchone()
+        conn.close()
+        return jsonify({"message": "Conexión exitosa", "db_time": db_time[0]}), 200
+    else:
+        return jsonify({"error": "No se pudo conectar a la base de datos"}), 500
 
 # =====================================================
 # Inicio del servidor
