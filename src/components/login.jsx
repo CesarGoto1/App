@@ -1,7 +1,7 @@
 // Login.jsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import './Login.css';
+import './login.css';
 
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
