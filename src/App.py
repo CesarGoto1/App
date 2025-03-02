@@ -37,6 +37,38 @@ def create_tables():
                     password VARCHAR(255) NOT NULL
                 )
             ''')
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS reference_metrics (
+                    id SERIAL PRIMARY KEY,
+                    avg_attention FLOAT,
+                    avg_gaze_x FLOAT,
+                    avg_gaze_y FLOAT,
+                    computed_date TIMESTAMP
+                )
+            ''')
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS session_metrics (
+                    id SERIAL PRIMARY KEY,
+                    user_id INTEGER REFERENCES users(id),
+                    session_date TIMESTAMP,
+                    avg_attention FLOAT,
+                    avg_gaze_x FLOAT,
+                    avg_gaze_y FLOAT,
+                    raw_data JSONB
+                )
+            ''')
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS comparative_results (
+                    id SERIAL PRIMARY KEY,
+                    user_id INTEGER REFERENCES users(id),
+                    session_metric_id INTEGER REFERENCES session_metrics(id),
+                    diff_attention FLOAT,
+                    diff_gaze_x FLOAT,
+                    diff_gaze_y FLOAT,
+                    comparison_date TIMESTAMP,
+                    raw_comparison JSONB
+                )
+            ''')
             conn.commit()
     conn.close()
     print("Tablas creadas o verificadas correctamente.")
@@ -185,30 +217,6 @@ def save_session_data():
                 # Comparación automática
                 # -------------------------------
                 cursor.execute('''
-                    CREATE TABLE IF NOT EXISTS reference_metrics (
-                        id SERIAL PRIMARY KEY,
-                        avg_attention FLOAT,
-                        avg_gaze_x FLOAT,
-                        avg_gaze_y FLOAT,
-                        computed_date TIMESTAMP
-                    )
-                ''')
-
-                cursor.execute('''
-                    CREATE TABLE IF NOT EXISTS comparative_results (
-                        id SERIAL PRIMARY KEY,
-                        user_id INTEGER REFERENCES users(id),
-                        session_metric_id INTEGER REFERENCES session_metrics(id),
-                        diff_attention FLOAT,
-                        diff_gaze_x FLOAT,
-                        diff_gaze_y FLOAT,
-                        comparison_date TIMESTAMP,
-                        raw_comparison JSONB
-                    )
-                ''')
-
-                # Obtener la métrica de referencia más reciente
-                cursor.execute('''
                     SELECT avg_attention, avg_gaze_x, avg_gaze_y FROM reference_metrics 
                     ORDER BY computed_date DESC LIMIT 1
                 ''')
@@ -308,6 +316,7 @@ def get_results():
 
     with conn:
         with conn.cursor() as cursor:
+            # Obtener el último registro de la sesión del usuario
             cursor.execute('''
                 SELECT id, user_id, session_date, avg_attention, avg_gaze_x, avg_gaze_y, raw_data 
                 FROM session_metrics 
@@ -328,6 +337,7 @@ def get_results():
             else:
                 session_result = None
 
+            # Obtener la métrica de referencia más reciente
             cursor.execute('''
                 SELECT id, avg_attention, avg_gaze_x, avg_gaze_y, computed_date 
                 FROM reference_metrics 
@@ -345,6 +355,7 @@ def get_results():
             else:
                 reference_result = None
 
+            # Obtener el último resultado comparativo asociado a la sesión
             comparative_result = None
             if (session_result):
                 cursor.execute('''
