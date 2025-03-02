@@ -10,7 +10,7 @@ import os
 
 # Inicialización de la aplicación Flask y configuración CORS
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000", "https://app-steel-rho.vercel.app"])
+CORS(app)
 
 # Configuración de la conexión a la base de datos PostgreSQL
 DATABASE_URL = os.getenv("DATABASE_URL")
