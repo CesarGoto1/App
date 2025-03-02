@@ -9,7 +9,7 @@ const Register = ({ onRegisterSuccess }) => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('https://app-steel-rho.vercel.app/register', {
+        const response = await fetch('https://postgres-production-7ea8.up.railway.app/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email, password }),

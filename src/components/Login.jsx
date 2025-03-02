@@ -10,7 +10,7 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('https://app-steel-rho.vercel.app//login', {
+    const response = await fetch('https://postgres-production-7ea8.up.railway.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
