@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")
 
 # Configuración de la conexión a la base de datos PostgreSQL
-DATABASE_URL = "postgresql://postgres:Nisemono27@localhost:5432/hikarishiftx" 
+DATABASE_URL = "postgresql://postgres:DrFOnnDkSGvXhIjiLTwLkmztRgxUtqQU@maglev.proxy.rlwy.net:32486/railway" 
 def get_db_connection():
     try:
         conn = psycopg.connect(DATABASE_URL)
@@ -22,10 +22,30 @@ def get_db_connection():
         print(f"Error al conectar a la base de datos: {e}")
         return None
 
-# Verificar la conexión al iniciar el servidor
+def create_tables():
+    conn = get_db_connection()
+    if conn is None:
+        print("Error en la conexión a la base de datos. No se pueden crear las tablas.")
+        return
+
+    with conn:
+        with conn.cursor() as cursor:
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS users (
+                    id SERIAL PRIMARY KEY,
+                    email VARCHAR(255) UNIQUE NOT NULL,
+                    password VARCHAR(255) NOT NULL
+                )
+            ''')
+            conn.commit()
+    conn.close()
+    print("Tablas creadas o verificadas correctamente.")
+
+# Verificar la conexión y crear tablas al iniciar el servidor
 if get_db_connection() is None:
     print("No se pudo establecer la conexión a la base de datos. El servidor no se iniciará.")
 else:
+    create_tables()
     print("El servidor está listo para recibir peticiones.")
 
 # =====================================================
@@ -102,7 +122,7 @@ def save_session_data():
     try:
         # Cálculo de promedios para datos de Morphcast
         morphcast_data = data.get('session_data', {}).get('morphcast', [])
-        if morphcast_data:
+        if (morphcast_data):
             # Extraemos las atenciones de los datos de Morphcast
             attention_values = []
             for mcast in morphcast_data:
@@ -114,7 +134,7 @@ def save_session_data():
 
         # Cálculo de promedios para datos de GazeRecorder
         gaze_data = data.get('session_data', {}).get('gazeRecorder', [])
-        if gaze_data:
+        if (gaze_data):
             # Si ya tienes datos, los mantienes como están, pero si no, generas datos aleatorios
             gaze_x_values = [random.uniform(0, 1) for _ in range(10)]  # 10 valores aleatorios entre 0 y 1 para x
             gaze_y_values = [random.uniform(0, 1) for _ in range(10)]  # 10 valores aleatorios entre 0 y 1 para y
@@ -270,22 +290,24 @@ def save_session_data():
 # =====================================================
 @app.route('/get_results', methods=['GET'])
 def get_results():
-    # Se espera que el cliente envíe el user_id como parámetro en la URL
+    print("Solicitud recibida en /get_results")
     user_id = request.args.get('user_id')
     if not user_id:
+        print("user_id no proporcionado")
         return jsonify({'success': False, 'message': 'user_id no proporcionado'}), 400
     try:
         user_id = int(user_id)
     except ValueError:
+        print("user_id inválido")
         return jsonify({'success': False, 'message': 'user_id inválido'}), 400
 
     conn = get_db_connection()
     if conn is None:
+        print("Error en la conexión a la base de datos")
         return jsonify({'success': False, 'message': 'Error en la conexión a la base de datos'}), 500
 
     with conn:
         with conn.cursor() as cursor:
-            # Obtener el último registro de la sesión del usuario
             cursor.execute('''
                 SELECT id, user_id, session_date, avg_attention, avg_gaze_x, avg_gaze_y, raw_data 
                 FROM session_metrics 
@@ -306,7 +328,6 @@ def get_results():
             else:
                 session_result = None
 
-            # Obtener la métrica de referencia más reciente
             cursor.execute('''
                 SELECT id, avg_attention, avg_gaze_x, avg_gaze_y, computed_date 
                 FROM reference_metrics 
@@ -324,7 +345,6 @@ def get_results():
             else:
                 reference_result = None
 
-            # Obtener el último resultado comparativo asociado a la sesión
             comparative_result = None
             if (session_result):
                 cursor.execute('''
