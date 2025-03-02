@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import './Register.css'; // Asegúrate de que el CSS esté bien importado
+import './Register.css'; // Asegúrate de importar el CSS
 
 const Register = ({ onRegisterSuccess }) => {
     const [email, setEmail] = useState('');
@@ -9,35 +9,18 @@ const Register = ({ onRegisterSuccess }) => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        console.log("Intentando registrar con:", email, password); // Depuración
+        const response = await fetch('https://backend-production-4e30.up.railway.app/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, password }),
+        });
 
-        if (!email.trim() || !password.trim()) {
-            alert("Por favor, llena todos los campos");
-            return;
-        }
+        const data = await response.json();
 
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: email.trim(), // Elimina espacios en blanco
-                    password: password.trim(),
-                }),
-            });
-
-            const data = await response.json();
-            console.log("Respuesta del backend:", data); // Para depurar en consola
-
-            if (response.ok) {
-                alert("Registro exitoso");
-                onRegisterSuccess();
-            } else {
-                alert(`Error: ${data.error || "Registro fallido"}`);
-            }
-        } catch (error) {
-            console.error("Error al registrar:", error);
-            alert("Error de conexión con el servidor");
+        if (data.success) {
+            onRegisterSuccess();
+        } else {
+            alert('Registration failed');
         }
     };
 
@@ -59,7 +42,7 @@ const Register = ({ onRegisterSuccess }) => {
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Correo electrónico"
+                    placeholder="Usuario"
                     required
                     className="input-field"
                     whileFocus={{ scale: 1.05 }}
