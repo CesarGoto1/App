@@ -6,17 +6,17 @@ from flask_cors import CORS
 import json
 from datetime import datetime
 import random
+import os
 
 # Inicialización de la aplicación Flask y configuración CORS
 app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")
 
 # Configuración de la conexión a la base de datos PostgreSQL
-DATABASE_URL = "postgresql://postgres:DrFOnnDkSGvXhIjiLTwLkmztRgxUtqQU@maglev.proxy.rlwy.net:32486/railway" 
+DATABASE_URL = os.getenv("DATABASE_URL")
 def get_db_connection():
     try:
         conn = psycopg.connect(DATABASE_URL)
-        print("Conexión a la base de datos exitosa.")
         return conn
     except Exception as e:
         print(f"Error al conectar a la base de datos: {e}")
