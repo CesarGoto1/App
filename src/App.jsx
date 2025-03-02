@@ -83,7 +83,7 @@ const App = () => {
     const loader = CY.loader();
 
     loader
-      .licenseKey("sk9745abaac13f90436a06d81654e629794eb31e503851")
+      .licenseKey("sk37a377d84be2f65ba7e25230e108043c5b34ee038f7d")
       .addModule(CY.modules().FACE_ATTENTION.name, { smoothness: 0.83 })
       .addModule(CY.modules().DATA_AGGREGATOR.name, { initialWaitMs: 2000, periodMs: 1000 });
 
