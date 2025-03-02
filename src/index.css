@@ -1,0 +1,97 @@
+/* index.css */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #000000;
+  /* Fondo oscuro */
+  color: #e0e0e0;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100dvh;
+  /* ✅ Usa min-height en lugar de height */
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* ✅ Alinea elementos al inicio (arriba) */
+  align-items: center;
+  background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
+  overflow-y: auto;
+  /* ✅ Permite scroll vertical si el contenido excede */
+}
+
+.app-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #c5003c;
+  /* Azul cibernético */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  animation: glitch 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+    transform: translate(2px, 2px);
+  }
+
+  25% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+    transform: translate(-2px, -2px);
+  }
+
+  50% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+    transform: translate(2px, 2px);
+  }
+
+  75% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+    transform: translate(-2px, -2px);
+  }
+
+  100% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+    transform: translate(2px, 2px);
+  }
+}
+
+.auth-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1200px;
+  margin-top: 30px;
+}
+
+.auth-form-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 50px;
+}
+
+.left-form,
+.right-form {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #c5003c;
+  /* Azul cibernético */
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
