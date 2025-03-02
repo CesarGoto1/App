@@ -9,7 +9,7 @@ import random
 
 # Inicialización de la aplicación Flask y configuración CORS
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="http://localhost:3000")
 
 # Configuración de la conexión a la base de datos PostgreSQL
 DATABASE_URL = "postgresql://postgres:DrFOnnDkSGvXhIjiLTwLkmztRgxUtqQU@maglev.proxy.rlwy.net:32486/railway" 
