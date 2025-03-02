@@ -10,7 +10,7 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('${process.env.REACT_APP_API_URL}/login', {
+    const response = await fetch('https://backend-production-4e30.up.railway.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
