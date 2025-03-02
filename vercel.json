@@ -4,12 +4,23 @@
       {
         "src": "wsgi.py",
         "use": "@vercel/python"
+      },
+      {
+        "src": "src/index.jsx",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/api/(.*)",
         "dest": "wsgi.py"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
       }
     ]
   }
