@@ -51,7 +51,7 @@ const App = () => {
     };
 
     // Llamada al backend
-    fetch("http://localhost:5000/save_session_data", {
+    fetch("https://backend-production-4e30.up.railway.app/save_session_data", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
