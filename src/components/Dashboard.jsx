@@ -15,7 +15,7 @@ const Dashboard = ({ onClose }) => {
           throw new Error("No se encontró el user_id");
         }
         // Se incluye el user_id en la query string
-        const res = await fetch(`https://backend-production-4e30.up.railway.app/get_results?user_id=${userId}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/get_results?userId=${userId}`);
         const json = await res.json();
         if (json.success) {
           setData(json);
