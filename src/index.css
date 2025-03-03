@@ -101,31 +101,26 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  /* Espaciado entre icono y texto */
   padding: 10px 15px;
-  /* Ajuste de tamaño de botones */
   font-size: 0.95rem;
-  /* Ajuste de tamaño de fuente */
   font-weight: bold;
   border: none;
   border-radius: 20px;
-  background: #c5003c;
-  /* Rojo cálido */
-  color: #fff;
+  background: var(--bg-dark);
+  color: var(--bg-light);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 300ms;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   letter-spacing: 1px;
   text-transform: uppercase;
-  width: auto;
-  /* Ancho fijo para todos los botones */
+  width: 100%;
+  max-width: 300px;
   margin: 2px auto;
-  /* Centra los botones */
 }
 
 .toggle-button:hover {
-  background-color: #880425;
-  /* Rojo oscuro */
+  background-color: var(--clr);
+  color: var(--bg-dark);
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }

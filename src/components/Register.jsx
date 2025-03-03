@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './Register.css';
 
-const Register = ({ onRegisterSuccess, onSwitchToLogin }) => {
+const Register = ({ onRegisterSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -72,16 +72,6 @@ const Register = ({ onRegisterSuccess, onSwitchToLogin }) => {
           transition={{ type: 'spring', stiffness: 300 }}
         >
           Registrarse
-        </motion.button>
-        <motion.button
-          type="button"
-          className="switch"
-          onClick={onSwitchToLogin}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 300 }}
-        >
-          Iniciar Sesión
         </motion.button>
       </motion.form>
     </motion.div>
