@@ -15,6 +15,7 @@ body {
   width: 100%;
   background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
   overflow-y: auto;
+  padding-top: 100px; /* Añade un margen superior para evitar superposición */
 }
 
 .app-title {
@@ -26,7 +27,10 @@ body {
   letter-spacing: 2px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   animation: glitch 1s infinite linear alternate-reverse;
-  margin-top: 20px;
+  position: fixed; /* Posiciona el título en la parte superior */
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  width: 100%;
+  z-index: 1000; /* Asegura que el título esté por encima de otros elementos */
 }
 
 @keyframes glitch {
