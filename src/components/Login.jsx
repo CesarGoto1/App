@@ -39,31 +39,37 @@ const Login = ({ onLoginSuccess }) => {
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         transition={{ type: 'spring', stiffness: 120 }}
-        className="login-form"
+        className="form"
       >
-        <motion.input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Usuario"
-          required
-          className="input-field"
-          whileFocus={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 150 }}
-        />
-        <motion.input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
-          required
-          className="input-field"
-          whileFocus={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 150 }}
-        />
+        <div className="input-span">
+          <label className="label" htmlFor="email">Usuario</label>
+          <motion.input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Usuario"
+            required
+            whileFocus={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          />
+        </div>
+        <div className="input-span">
+          <label className="label" htmlFor="password">Contraseña</label>
+          <motion.input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Contraseña"
+            required
+            whileFocus={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          />
+        </div>
         <motion.button
           type="submit"
-          className="login-button"
+          className="submit"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 300 }}
