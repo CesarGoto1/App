@@ -1,16 +1,16 @@
 /* Login.css */
-  .form {
-    --bg-light: #efefef;
-    --bg-dark: #707070;
-    --clr: #58bc82;
-    --clr-alpha: #9c9c9c60;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem; /* Aumentar el espacio entre los elementos */
-    width: 100%;
-    max-width: 400px; /* Asegúrate de que el ancho máximo sea el mismo que el de Register */
-  }
+.form {
+  --bg-light: #efefef;
+  --bg-dark: #707070;
+  --clr: #58bc82;
+  --clr-alpha: #9c9c9c60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; /* Aumentar el espacio entre los elementos */
+  width: 100%;
+  max-width: 400px; /* Asegúrate de que el ancho máximo sea el mismo que el de Register */
+}
   
   .form .input-span {
     width: 100%;
