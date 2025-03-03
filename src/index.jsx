@@ -61,23 +61,14 @@ const Index = () => {
             <div className="wrapper">
               <div className="card-switch">
                 <div className="flip-card__inner">
-                  {showRegister ? (
-                    <div className="flip-card__back">
-                      <div className="title">Registrarse</div>
-                      <Register onRegisterSuccess={handleRegisterSuccess} />
-                      <button className="switch-button" onClick={() => setShowRegister(false)}>
-                        Iniciar sesión
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flip-card__front">
-                      <div className="title">Iniciar sesión</div>
-                      <Login onLoginSuccess={handleLoginSuccess} />
-                      <button className="switch-button" onClick={() => setShowRegister(true)}>
-                        Registrarse
-                      </button>
-                    </div>
-                  )}
+                  <div className="flip-card__front" onClick={() => setShowRegister(false)}>
+                    <div className="title">Iniciar sesión</div>
+                    <Login onLoginSuccess={handleLoginSuccess} />
+                  </div>
+                  <div className="flip-card__back" onClick={() => setShowRegister(true)}>
+                    <div className="title">Registrarse</div>
+                    <Register onRegisterSuccess={handleRegisterSuccess} />
+                  </div>
                 </div>
               </div>
             </div>
