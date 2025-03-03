@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaRocket } from "react-icons/fa";
 import "./PantallaBienvenida.css";
 
 const PantallaBienvenida = ({ onFinish }) => {
@@ -9,7 +8,7 @@ const PantallaBienvenida = ({ onFinish }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onFinish, 800); // Tiempo de fade-out antes de finalizar
+      setTimeout(onFinish, 800);
     }, 3500);
 
     return () => clearTimeout(timer);
@@ -25,14 +24,24 @@ const PantallaBienvenida = ({ onFinish }) => {
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div
-            className="icon-container"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <FaRocket className="welcome-icon" />
-          </motion.div>
+          <div className="wheel-and-hamster" aria-label="Hamster corriendo en una rueda" role="img">
+            <div className="wheel"></div>
+            <div className="hamster">
+              <div className="hamster__body">
+                <div className="hamster__head">
+                  <div className="hamster__ear"></div>
+                  <div className="hamster__eye"></div>
+                  <div className="hamster__nose"></div>
+                </div>
+                <div className="hamster__limb hamster__limb--fr"></div>
+                <div className="hamster__limb hamster__limb--fl"></div>
+                <div className="hamster__limb hamster__limb--br"></div>
+                <div className="hamster__limb hamster__limb--bl"></div>
+                <div className="hamster__tail"></div>
+              </div>
+            </div>
+            <div className="spoke"></div>
+          </div>
 
           <motion.h1
             className="welcome-title"
@@ -42,13 +51,6 @@ const PantallaBienvenida = ({ onFinish }) => {
           >
             Bienvenido a <span>FocusWare</span>
           </motion.h1>
-
-          <motion.div
-            className="loading-bar"
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 2.5, ease: "easeInOut", delay: 0.8 }}
-          />
         </motion.div>
       )}
     </AnimatePresence>
