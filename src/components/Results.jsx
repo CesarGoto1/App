@@ -1,3 +1,4 @@
+// Results.jsx
 import React, { useState } from "react";
 import { Camera, Eye, EyeOff, PlayCircle, BarChart2 } from "lucide-react";
 import Webcam from "react-webcam";
@@ -33,10 +34,10 @@ const Results = ({
   }
 
   return (
-    <div className="results">
-      <h2>HERRAMIENTA DE ANÁLISIS DE ATENCIÓN</h2>
+    <div className="results p-4">
+      <h2 className="text-2xl font-bold mb-4">HERRAMIENTA DE ANÁLISIS DE ATENCIÓN</h2>
       {cameraEnabled ? null : (
-        <p>
+        <p className="mb-4">
           Para acceder a las actividades, primero debes activar la cámara.
         </p>
       )}
@@ -45,6 +46,7 @@ const Results = ({
       <button
         disabled={!isVisualizarResultadosEnabled}
         onClick={handleShowDashboard}
+        className="btn flex items-center space-x-2 mb-2"
       >
         <BarChart2 className="icon" />
         <span>Visualizar Resultados</span>
@@ -54,6 +56,7 @@ const Results = ({
       <button
         disabled={!toggleCameraEnabled}
         onClick={toggleCamera}
+        className="btn flex items-center space-x-2 mb-2"
       >
         {cameraEnabled ? <EyeOff className="icon" /> : <Eye className="icon" />}
         <span>{cameraEnabled ? "Desactivar Cámara" : "Activar Cámara"}</span>
@@ -63,6 +66,7 @@ const Results = ({
       <button
         disabled={!isIniciarTestEnabled}
         onClick={startTest}
+        className="btn flex items-center space-x-2 mb-2"
       >
         <PlayCircle className="icon" />
         <span>Iniciar Test</span>
