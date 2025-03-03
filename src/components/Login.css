@@ -46,7 +46,7 @@
   
   .form .submit,
   .form .switch {
-    padding: 1.5rem 1rem; /* Aumentar el padding */
+    padding: 1.5rem; /* Aumentar el padding */
     width: 100%;
     display: flex;
     align-items: center;
