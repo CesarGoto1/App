@@ -1,7 +1,9 @@
-/* From Uiverse.io by Nawsome */ 
 .wheel-and-hamster {
   --dur: 1s;
-  position: relative;
+  position: absolute; /* Cambiado de relative a absolute */
+  top: 50%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Ajuste para centrar correctamente */
   width: 18em; /* Aumentado de 12em a 18em */
   height: 18em; /* Aumentado de 12em a 18em */
   font-size: 14px;
