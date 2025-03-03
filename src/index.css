@@ -26,10 +26,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px #00c500, 0 0 20px #00c500;
-  position: fixed; /* Posiciona el título en la parte superior */
-  top: 20px; /* Ajusta la distancia desde la parte superior */
-  width: 100%;
-  z-index: 1000; /* Asegura que el título esté por encima de otros elementos */
+  margin-bottom: 50px; /* Añadir espacio entre el título y el formulario */
 }
 
 .auth-container {
