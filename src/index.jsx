@@ -15,7 +15,6 @@ const Index = () => {
   const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
-    // Eliminar el token del localStorage cuando la página se recarga
     localStorage.removeItem('token');
     setToken(null);
     setIsAuthenticated(false);
@@ -40,7 +39,6 @@ const Index = () => {
 
   return (
     <div className="main-container">
-      {/* Condicionalmente mostrar el título solo si no está autenticado */}
       {!isAuthenticated && (
         <motion.h1
           className="app-title"
@@ -52,11 +50,9 @@ const Index = () => {
         </motion.h1>
       )}
 
-      {/* Si está autenticado, muestra el componente App */}
       {isAuthenticated ? (
         <App onLogout={handleLogout} />
       ) : (
-        // Si no está autenticado, muestra el formulario de Login o Register
         <div className="auth-container">
           <motion.div
             className="auth-form-container"
@@ -64,45 +60,30 @@ const Index = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            {showRegister ? (
-              <div className="form-container">
-                <motion.h2
-                  initial={{ x: 100 }}
-                  animate={{ x: 0 }}
-                  transition={{ type: 'spring', stiffness: 120 }}
-                >
-                  Regístrate
-                </motion.h2>
-                <Register onRegisterSuccess={handleRegisterSuccess} />
-                <motion.button
-                  className="toggle-button"
-                  onClick={() => setShowRegister(false)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Volver al Login
-                </motion.button>
+            <div className="wrapper">
+              <div className="card-switch">
+                <label className="switch">
+                  <input
+                    className="toggle"
+                    type="checkbox"
+                    checked={showRegister}
+                    onChange={() => setShowRegister(!showRegister)}
+                  />
+                  <span className="slider"></span>
+                  <span className="card-side"></span>
+                  <div className="flip-card__inner">
+                    <div className="flip-card__front">
+                      <div className="title">Iniciar sesión</div>
+                      <Login onLoginSuccess={handleLoginSuccess} />
+                    </div>
+                    <div className="flip-card__back">
+                      <div className="title">Registrarse</div>
+                      <Register onRegisterSuccess={handleRegisterSuccess} />
+                    </div>
+                  </div>
+                </label>
               </div>
-            ) : (
-              <div className="form-container">
-                <motion.h2
-                  initial={{ x: -100 }}
-                  animate={{ x: 0 }}
-                  transition={{ type: 'spring', stiffness: 120 }}
-                >
-                  Iniciar sesión
-                </motion.h2>
-                <Login onLoginSuccess={handleLoginSuccess} />
-                <motion.button
-                  className="toggle-button"
-                  onClick={() => setShowRegister(true)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Registrarse
-                </motion.button>
-              </div>
-            )}
+            </div>
           </motion.div>
         </div>
       )}
