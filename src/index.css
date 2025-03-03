@@ -35,10 +35,6 @@ body {
   transition: opacity 0.5s ease; /* Transición para el desvanecimiento */
 }
 
-.app-title.hidden {
-  display: none; /* Ocultar el título cuando se desplaza hacia abajo */
-}
-
 .auth-container {
   display: flex;
   justify-content: center;
