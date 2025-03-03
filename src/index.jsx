@@ -60,16 +60,26 @@ const Index = () => {
           >
             <div className="wrapper">
               <div className="card-switch">
-                <div className="flip-card__inner">
-                  <div className="flip-card__front" onClick={() => setShowRegister(false)}>
-                    <div className="title">Iniciar sesión</div>
-                    <Login onLoginSuccess={handleLoginSuccess} />
+                <label className="switch">
+                  <input
+                    className="toggle"
+                    type="checkbox"
+                    checked={showRegister}
+                    onChange={() => setShowRegister(!showRegister)}
+                  />
+                  <span className="slider"></span>
+                  <span className="card-side"></span>
+                  <div className="flip-card__inner">
+                    <div className="flip-card__front">
+                      <div className="title">Iniciar sesión</div>
+                      <Login onLoginSuccess={handleLoginSuccess} />
+                    </div>
+                    <div className="flip-card__back">
+                      <div className="title">Registrarse</div>
+                      <Register onRegisterSuccess={handleRegisterSuccess} />
+                    </div>
                   </div>
-                  <div className="flip-card__back" onClick={() => setShowRegister(true)}>
-                    <div className="title">Registrarse</div>
-                    <Register onRegisterSuccess={handleRegisterSuccess} />
-                  </div>
-                </div>
+                </label>
               </div>
             </div>
           </motion.div>
