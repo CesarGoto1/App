@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import './Register.css';
 
 const Register = ({ onRegisterSuccess }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async (e) => {
@@ -12,7 +12,7 @@ const Register = ({ onRegisterSuccess }) => {
     const response = await fetch('https://backend-production-4e30.up.railway.app/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
@@ -34,10 +34,10 @@ const Register = ({ onRegisterSuccess }) => {
     >
       <motion.input
         type="text"
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Usuario"
+        id="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
         required
         className="flip-card__input"
         whileFocus={{ scale: 1.05 }}
