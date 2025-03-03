@@ -1,58 +1,167 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaRocket } from "react-icons/fa";
-import "./PantallaBienvenida.css";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Play, Timer, Trophy, X, Target } from 'lucide-react';
+import './PointFollowGame.css';
 
-const PantallaBienvenida = ({ onFinish }) => {
-  const [isVisible, setIsVisible] = useState(true);
+const PointGame = ({ onClose }) => {
+    const [punto, setPunto] = useState({ x: 50, y: 50 });
+    const [puntuacion, setPuntuacion] = useState(0);
+    const [fallos, setFallos] = useState(0);
+    const [jugando, setJugando] = useState(false);
+    const [tiempo, setTiempo] = useState(15);
+    const [ripple, setRipple] = useState(null);
+    const timeoutRef = useRef();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      setTimeout(onFinish, 800); // Tiempo de fade-out antes de finalizar
-    }, 3500);
+    useEffect(() => {
+        if (jugando) {
+            const moverPunto = () => {
+                setPunto({
+                    x: Math.random() * 90 + 5,
+                    y: Math.random() * 90 + 5,
+                });
+                const delay = Math.random() * 500 + 500;
+                timeoutRef.current = setTimeout(moverPunto, delay);
+            };
 
-    return () => clearTimeout(timer);
-  }, [onFinish]);
+            moverPunto();
 
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className="welcome-screen"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div
-            className="icon-container"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <FaRocket className="welcome-icon" />
-          </motion.div>
+            const tiempoIntervalo = setInterval(() => {
+                setTiempo((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(tiempoIntervalo);
+                        clearTimeout(timeoutRef.current);
+                        setJugando(false);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
 
-          <motion.h1
-            className="welcome-title"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Bienvenido a <span>FocusWare</span>
-          </motion.h1>
+            return () => {
+                clearInterval(tiempoIntervalo);
+                clearTimeout(timeoutRef.current);
+            };
+        }
+    }, [jugando]);
 
-          <motion.div
-            className="loading-bar"
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 2.5, ease: "easeInOut", delay: 0.8 }}
-          />
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+    const manejarClick = (e) => {
+        e.stopPropagation();
+        if (!jugando) return;
+
+        setPuntuacion((prev) => prev + 1);
+        clearTimeout(timeoutRef.current);
+        setPunto({
+            x: Math.random() * 90 + 5,
+            y: Math.random() * 90 + 5,
+        });
+        const delay = Math.random() * 500 + 500;
+        timeoutRef.current = setTimeout(() => {
+            setPunto({
+                x: Math.random() * 90 + 5,
+                y: Math.random() * 90 + 5,
+            });
+        }, delay);
+    };
+
+    const manejarFallo = (e) => {
+        if (jugando) {
+            setFallos((prev) => prev + 1);
+            const rect = e.currentTarget.getBoundingClientRect();
+            setRipple({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            });
+            setTimeout(() => setRipple(null), 600);
+        }
+    };
+
+    const reiniciarJuego = () => {
+        setTiempo(15);
+        setPuntuacion(0);
+        setFallos(0);
+        onClose();
+    };
+
+    return (
+        <div id="game-container">
+            <div id="game-board" onClick={manejarFallo}>
+                {jugando ? (
+                    <>
+                        <motion.div
+                            className="point"
+                            style={{
+                                top: `${punto.y}%`,
+                                left: `${punto.x}%`,
+                            }}
+                            onClick={manejarClick}
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 300 }}
+                            key={`${punto.x}-${punto.y}`}
+                        >
+                            <Target size={24} color="#fff" />
+                        </motion.div>
+
+                        <div className="indicadores">
+                            <div className="score-board">
+                                <Trophy size={20} /> {puntuacion}
+                                <span className="separador">|</span>
+                                <X size={20} /> {fallos}
+                            </div>
+                            <div className="timer">
+                                <Timer size={20} /> {tiempo}s
+                            </div>
+                        </div>
+
+                        {ripple && (
+                            <motion.div
+                                className="ripple"
+                                initial={{ scale: 0, opacity: 1 }}
+                                animate={{ scale: 2, opacity: 0 }}
+                                style={{
+                                    left: ripple.x,
+                                    top: ripple.y,
+                                }}
+                            />
+                        )}
+                    </>
+                ) : tiempo === 0 ? (
+                    <motion.div
+                        className="game-over"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                    >
+                        <div className="game-over-content">
+                            <h2>¡Tiempo terminado!</h2>
+                            <div className="puntuacion-final">
+                                <Trophy size={32} />
+                                <span>{puntuacion}</span>
+                            </div>
+                            <button
+                                className="close-button"
+                                onClick={reiniciarJuego}
+                            >
+                                <X size={18} /> Cerrar Juego
+                            </button>
+                        </div>
+                    </motion.div>
+                ) : (
+                    <motion.button
+                        className="start-button"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setJugando(true);
+                        }}
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        <Play size={20} /> Comenzar
+                    </motion.button>
+                )}
+            </div>
+        </div>
+    );
 };
 
-export default PantallaBienvenida;
+export default PointGame;
