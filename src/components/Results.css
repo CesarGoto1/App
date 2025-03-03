@@ -99,3 +99,17 @@
   border-radius: 10px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* Results.css */
+.results-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #fcfcfc;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px #acacac, 0 0 20px #acacac;
+  background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
+  padding: 20px 0;
+  transition: opacity 0.5s ease;
+}

@@ -1,3 +1,4 @@
+// Results.jsx
 import React, { useState } from "react";
 import { Camera, Eye, EyeOff, PlayCircle, BarChart2 } from "lucide-react";
 import Webcam from "react-webcam";
@@ -34,7 +35,7 @@ const Results = ({
 
   return (
     <div className="results p-4">
-      <h2 className="text-2xl font-bold mb-4">HERRAMIENTA DE ANÁLISIS DE ATENCIÓN</h2>
+      <h2 className="results-title">HERRAMIENTA DE ANÁLISIS DE ATENCIÓN</h2>
       {cameraEnabled ? null : (
         <p className="mb-4">
           Para acceder a las actividades, primero debes activar la cámara.
