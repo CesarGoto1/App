@@ -24,6 +24,15 @@ const PantallaBienvenida = ({ onFinish }) => {
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8 }}
         >
+          <motion.h1
+            className="welcome-title"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            BIENVENIDO
+          </motion.h1>
+
           <div className="wheel-and-hamster" aria-label="Hamster corriendo en una rueda" role="img">
             <div className="wheel"></div>
             <div className="hamster">
@@ -42,15 +51,6 @@ const PantallaBienvenida = ({ onFinish }) => {
             </div>
             <div className="spoke"></div>
           </div>
-
-          <motion.h1
-            className="welcome-title"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Bienvenido a <span>FocusWare</span>
-          </motion.h1>
         </motion.div>
       )}
     </AnimatePresence>
