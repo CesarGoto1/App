@@ -37,7 +37,7 @@ const Register = ({ onRegisterSuccess }) => {
         id="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
+        placeholder="Usuario"
         required
         className="flip-card__input"
         whileFocus={{ scale: 1.05 }}
