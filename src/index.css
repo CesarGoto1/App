@@ -27,9 +27,11 @@ body {
   letter-spacing: 2px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px #acacac, 0 0 20px #acacac;
   position: fixed; /* Posiciona el título en la parte superior */
-  top: 50px; /* Ajusta la distancia desde la parte superior */
+  top: 0; /* Ajusta la distancia desde la parte superior */
   width: 100%;
   z-index: 1000; /* Asegura que el título esté por encima de otros elementos */
+  background: linear-gradient(135deg, #1f1f1f, #0f0f0f); /* Fondo para el título */
+  padding: 20px 0; /* Añadir padding para el título */
 }
 
 .auth-container {
@@ -253,16 +255,16 @@ h2 {
 }
 
 .flip-card__input {
-  width: 300px; /* Aumentar el ancho */
-  height: 50px; /* Aumentar la altura */
+  width: 250px;
+  height: 40px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
   box-shadow: 4px 4px var(--main-color);
-  font-size: 18px; /* Aumentar el tamaño de la fuente */
+  font-size: 15px;
   font-weight: 600;
   color: var(--font-color);
-  padding: 10px 15px; /* Aumentar el padding */
+  padding: 5px 10px;
   outline: none;
 }
 
@@ -282,13 +284,13 @@ h2 {
 
 .flip-card__btn {
   margin: 20px 0 20px 0;
-  width: 150px; /* Aumentar el ancho */
-  height: 50px; /* Aumentar la altura */
+  width: 120px;
+  height: 40px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
   box-shadow: 4px 4px var(--main-color);
-  font-size: 20px; /* Aumentar el tamaño de la fuente */
+  font-size: 17px;
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
