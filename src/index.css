@@ -30,7 +30,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
+  background: transparent;
   padding: 20px 0;
   transition: opacity 0.5s ease;
 }
