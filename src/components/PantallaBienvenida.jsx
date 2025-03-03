@@ -26,8 +26,8 @@ const PantallaBienvenida = ({ onFinish }) => {
         >
           <motion.h1
             className="welcome-title"
-            initial={{ y: -60, opacity: 0 }} // Ajusta el valor de y para mover el mensaje más arriba
-            animate={{ y: -40, opacity: 1 }} // Ajusta el valor de y para mover el mensaje más arriba
+            initial={{ y: -70, opacity: 0 }} // Ajusta el valor de y para mover el mensaje más arriba
+            animate={{ y: -50, opacity: 1 }} // Ajusta el valor de y para mover el mensaje más arriba
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             BIENVENIDO
