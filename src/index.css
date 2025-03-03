@@ -13,8 +13,8 @@ body {
   /* ✅ Usa min-height en lugar de height */
   width: 100%;
   flex-direction: column;
-  justify-content: flex-start;
-  /* ✅ Alinea elementos al inicio (arriba) */
+  justify-content: center;
+  /* ✅ Alinea elementos al centro verticalmente */
   align-items: center;
   background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
   overflow-y: auto;
@@ -62,26 +62,25 @@ body {
 
 .auth-container {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
-  max-width: 1200px;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
   margin-top: 30px;
 }
 
 .auth-form-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  gap: 50px;
+  gap: 20px;
 }
 
-.left-form,
-.right-form {
-  width: 45%;
+.form-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 h2 {
@@ -94,4 +93,44 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 1px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-button {
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Espaciado entre icono y texto */
+  padding: 10px 15px;
+  /* Ajuste de tamaño de botones */
+  font-size: 0.95rem;
+  /* Ajuste de tamaño de fuente */
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  background: #c5003c;
+  /* Rojo cálido */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: auto;
+  /* Ancho fijo para todos los botones */
+  margin: 2px auto;
+  /* Centra los botones */
+}
+
+.toggle-button:hover {
+  background-color: #880425;
+  /* Rojo oscuro */
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
