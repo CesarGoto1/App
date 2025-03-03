@@ -37,7 +37,8 @@ body {
   justify-content: center;
   width: 100%;
   max-width: 500px; /* Aumentar el ancho máximo */
-  margin-top: 30px;
+  margin-top: 20px; /* Mover un poco más arriba */
+  margin-left: 20px; /* Mover un poco más a la derecha */
 }
 
 .auth-form-container {
@@ -141,7 +142,7 @@ h2 {
   top: 0;
   width: 100px;
   text-decoration: none;
-  color: var(--font-color);
+  color: var (--font-color);
   font-weight: 600;
 }
 
