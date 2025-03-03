@@ -1,108 +1,76 @@
+/* MiniGames.css */
 .mini-games {
+    --input-focus: #2d8cf0;
+    --font-color: #fefefe;
+    --font-color-sub: #7e7e7e;
+    --bg-color: #111;
+    --bg-color-alt: #7e7e7e;
+    --main-color: #fefefe;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centrar contenido horizontalmente */
     gap: 20px;
-    background: linear-gradient(135deg, #2a2a2a, #333333);
-    /* Fondo oscuro con gradiente */
-    border-radius: 15px;
+    background: var(--bg-color);
+    border-radius: 5px;
     padding: 20px;
-    /* Sombra holográfica */
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mini-games:hover {
+  }
+  
+  .mini-games:hover {
     transform: translateY(-5px);
-    /* Efecto de levitación */
-}
-
-.mini-games h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #c5003c;
-    /* Rojo cálido para el título */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mini-games h2 {
+    font-size: 25px;
+    font-weight: 900;
     text-align: center;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.mini-games p {
+    color: var(--main-color);
+    margin-bottom: 20px;
+  }
+  
+  .mini-games p {
     font-size: 1rem;
-    color: #e0e0e0;
-    background: #444444;
-    border: none;
-    border-radius: 20px;
-    padding: 5px;
-    font-weight: bold;
+    color: var(--font-color);
     text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .mini-games button {
+    width: 80%; /* Hacer los botones más anchos */
+    height: 50px; /* Aumentar la altura de los botones */
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    width: 500px;
-    margin: 10px auto;
-}
-
-.mini-games p:hover {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido del botón */
+    margin: 10px 0; /* Añadir margen vertical para separar los botones */
+  }
+  
+  .mini-games button:hover {
+    background-color: var(--input-focus);
     transform: scale(1.05);
-    background-color: #c5003c;
-    border-color: #c5003c;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    /* Sombra al pasar el mouse */
-}
-
-.mini-games p:active {
-    transform: scale(0.98);
-    background-color: #357abd;
-    /* Azul oscuro */
-    border-color: #2f6a8e;
-}
-
-.mini-games p:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(72, 132, 211, 0.5);
-    /* Efecto de enfoque */
-}
-
-/* Contenedores de juegos */
-.follow-game-container,
-.reaction-game-container,
-.find-object-game-container {
-    width: 80%;
-    height: 650px;
-    margin: 0 auto;
-    background-color: #222;
-    border: 2px solid #4a90e2;
-    /* Borde cibernético */
-    border-radius: 15px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.2);
-    /* Resplandor cibernético */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.follow-game-container,
-.reaction-game-container,
-.find-object-game-container {
-    opacity: 0;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mini-games button:active {
     transform: scale(0.95);
-}
-
-.mini-games div:has(> *) {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.disabled {
-    opacity: 0.5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mini-games button:disabled {
+    background-color: #777777;
+    color: #cccccc;
     cursor: not-allowed;
-    text-decoration: line-through;
-}
-
-
-
-.mini-games p:hover:not(.disabled) {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+    opacity: 0.8;
+    box-shadow: none;
+  }
