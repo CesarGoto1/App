@@ -209,6 +209,7 @@ h2 {
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  margin: 0 auto; /* Centrar horizontalmente */
 }
 
 .toggle:checked ~ .flip-card__inner {
