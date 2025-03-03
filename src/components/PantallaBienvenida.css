@@ -33,10 +33,10 @@
 .hamster {
   animation: hamster var(--dur) ease-in-out infinite;
   top: 50%;
-  left: calc(50% - 3.5em);
+  left: 50%; /* Centrado horizontalmente */
   width: 7em;
   height: 3.75em;
-  transform: rotate(4deg) translate(-0.8em,1.85em);
+  transform: rotate(4deg) translate(-50%, 1.85em); /* Ajuste para pegar al hámster a la rueda */
   transform-origin: 50% 0;
   z-index: 1;
 }
