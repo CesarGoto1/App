@@ -124,26 +124,26 @@ h2 {
   height: 20px;
 }
 
-.card-side::before,
-.card-side::after {
+.card-side::before {
   position: absolute;
+  content: 'Log in';
+  left: -70px;
   top: 0;
   width: 100px;
+  text-decoration: underline;
+  color: var(--font-color);
   font-weight: 600;
 }
 
-.card-side::before {
-  content: 'Log in';
-  left: -70px;
-  text-decoration: underline;
-  color: var(--font-color);
-}
-
 .card-side::after {
+  position: absolute;
   content: 'Sign up';
   left: 70px;
+  top: 0;
+  width: 100px;
   text-decoration: none;
   color: var(--font-color);
+  font-weight: 600;
 }
 
 .toggle {
@@ -190,17 +190,17 @@ h2 {
   transform: translateX(30px);
 }
 
-.toggle:checked ~ .card-side::before {
+.toggle:checked ~ .card-side:before {
   text-decoration: none;
 }
 
-.toggle:checked ~ .card-side::after {
+.toggle:checked ~ .card-side:after {
   text-decoration: underline;
 }
 
 .flip-card__inner {
-  width: 400px;
-  height: 450px;
+  width: 300px;
+  height: 350px;
   position: relative;
   background-color: transparent;
   perspective: 1000px;
@@ -217,9 +217,8 @@ h2 {
   box-shadow: none;
 }
 
-.flip-card__front,
-.flip-card__back {
-  padding: 30px;
+.flip-card__front, .flip-card__back {
+  padding: 20px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -227,7 +226,7 @@ h2 {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background: var(--bg-color);
-  gap: 30px;
+  gap: 20px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   box-shadow: 4px 4px var(--main-color);
@@ -242,12 +241,12 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 }
 
 .title {
-  margin: 20px 0;
-  font-size: 30px;
+  margin: 20px 0 20px 0;
+  font-size: 25px;
   font-weight: 900;
   text-align: center;
   color: var(--main-color);
@@ -276,14 +275,13 @@ h2 {
   border: 2px solid var(--input-focus);
 }
 
-.flip-card__btn:active,
-.button-confirm:active {
+.flip-card__btn:active, .button-confirm:active {
   box-shadow: 0px 0px var(--main-color);
   transform: translate(3px, 3px);
 }
 
 .flip-card__btn {
-  margin: 20px 0;
+  margin: 20px 0 20px 0;
   width: 120px;
   height: 40px;
   border-radius: 5px;
@@ -294,4 +292,4 @@ h2 {
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
-}
+} 
