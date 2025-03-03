@@ -35,14 +35,15 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
       <h2>🎮 Mini Juegos</h2>
 
       {/* Botón para "Seguir el punto" */}
-      <p
+      <button
         onClick={() => toggleGame("pointFollowGame")}
         className={disabledGames.includes("pointFollowGame") ? "disabled" : ""}
+        disabled={disabledGames.includes("pointFollowGame")}
       >
         {disabledGames.includes("pointFollowGame")
           ? "❌ Seguir el punto"
           : "➡️ Seguir el punto"}
-      </p>
+      </button>
       {activeGame === "pointFollowGame" && (
         <div className="follow-game-container">
           <PointFollowGame onClose={() => closeGame("pointFollowGame")} />
@@ -50,14 +51,15 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
       )}
 
       {/* Botón para "Buscar el objeto" */}
-      <p
+      <button
         onClick={() => toggleGame("findObjectGame")}
         className={disabledGames.includes("findObjectGame") ? "disabled" : ""}
+        disabled={disabledGames.includes("findObjectGame")}
       >
         {disabledGames.includes("findObjectGame")
           ? "❌ Buscar el objeto"
           : "🔍 Buscar el objeto"}
-      </p>
+      </button>
       {activeGame === "findObjectGame" && (
         <div className="find-object-game-container">
           <FindObjectGame onClose={() => closeGame("findObjectGame")} />
@@ -65,14 +67,15 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
       )}
 
       {/* Botón para "Reacción rápida" */}
-      <p
+      <button
         onClick={() => toggleGame("reactionGame")}
         className={disabledGames.includes("reactionGame") ? "disabled" : ""}
+        disabled={disabledGames.includes("reactionGame")}
       >
         {disabledGames.includes("reactionGame")
           ? "❌ Reacción rápida"
           : "⚡ Reacción rápida"}
-      </p>
+      </button>
       {activeGame === "reactionGame" && (
         <div className="reaction-game-container">
           <ReactionGame onClose={() => closeGame("reactionGame")} />
