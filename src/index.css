@@ -15,41 +15,40 @@ body {
   width: 100%;
   background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
   overflow-y: auto;
-  padding-top: 100px; /* Añade un margen superior para evitar superposición */
+  padding-top: 100px;
 }
 
 .app-title {
-  font-size: 3.5rem; /* Aumentar el tamaño de la fuente */
+  font-size: 3.5rem;
   font-weight: 700;
   color: #fcfcfc;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px #acacac, 0 0 20px #acacac;
-  position: fixed; /* Posiciona el título en la parte superior */
-  top: 0; /* Ajusta la distancia desde la parte superior */
+  position: fixed;
+  top: 0;
   width: 100%;
-  z-index: 1000; /* Asegura que el título esté por encima de otros elementos */
-  background: linear-gradient(135deg, #1f1f1f, #0f0f0f); /* Fondo para el título */
-  padding: 20px 0; /* Añadir padding para el título */
-  transition: opacity 0.5s ease; /* Transición para el desvanecimiento */
+  z-index: 1000;
+  background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
+  padding: 20px 0;
+  transition: opacity 0.5s ease;
 }
 
 .app-title.hidden {
-  display: none; /* Ocultar el título cuando se desplaza hacia abajo */
+  display: none;
 }
 
 .auth-container {
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 500px; /* Aumentar el ancho máximo */
-  margin-top: 10px; /* Mover un poco más arriba */
-  margin-left: auto; /* Centrar horizontalmente */
-  margin-right: auto; /* Centrar horizontalmente */
+  max-width: 500px;
+  margin: 10px auto 0;
 }
 
-.auth-form-container {
+.auth-form-container,
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,15 +56,8 @@ body {
   gap: 20px;
 }
 
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
 h2 {
-  font-size: 2.5rem; /* Aumentar el tamaño de la fuente */
+  font-size: 2.5rem;
   font-weight: 600;
   color: #ffffff;
   text-align: center;
@@ -81,8 +73,8 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 15px 20px; /* Aumentar el padding */
-  font-size: 1.2rem; /* Aumentar el tamaño de la fuente */
+  padding: 15px 20px;
+  font-size: 1.2rem;
   font-weight: bold;
   border: none;
   border-radius: 20px;
@@ -132,26 +124,26 @@ h2 {
   height: 20px;
 }
 
-.card-side::before {
+.card-side::before,
+.card-side::after {
   position: absolute;
-  content: 'Log in';
-  left: -70px;
   top: 0;
   width: 100px;
-  text-decoration: underline;
-  color: var(--font-color);
   font-weight: 600;
 }
 
+.card-side::before {
+  content: 'Log in';
+  left: -70px;
+  text-decoration: underline;
+  color: var(--font-color);
+}
+
 .card-side::after {
-  position: absolute;
   content: 'Sign up';
   left: 70px;
-  top: 0;
-  width: 100px;
   text-decoration: none;
-  color: var (--font-color);
-  font-weight: 600;
+  color: var(--font-color);
 }
 
 .toggle {
@@ -198,17 +190,17 @@ h2 {
   transform: translateX(30px);
 }
 
-.toggle:checked ~ .card-side:before {
+.toggle:checked ~ .card-side::before {
   text-decoration: none;
 }
 
-.toggle:checked ~ .card-side:after {
+.toggle:checked ~ .card-side::after {
   text-decoration: underline;
 }
 
 .flip-card__inner {
-  width: 400px; /* Asegúrate de que ambos formularios tengan el mismo ancho */
-  height: 450px; /* Aumentar la altura */
+  width: 400px;
+  height: 450px;
   position: relative;
   background-color: transparent;
   perspective: 1000px;
@@ -225,8 +217,9 @@ h2 {
   box-shadow: none;
 }
 
-.flip-card__front, .flip-card__back {
-  padding: 30px; /* Aumentar el padding */
+.flip-card__front,
+.flip-card__back {
+  padding: 30px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -234,7 +227,7 @@ h2 {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background: var(--bg-color);
-  gap: 30px; /* Aumentar el espacio entre los elementos */
+  gap: 30px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   box-shadow: 4px 4px var(--main-color);
@@ -249,12 +242,12 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px; /* Aumentar el espacio entre los elementos */
+  gap: 30px;
 }
 
 .title {
-  margin: 20px 0 20px 0;
-  font-size: 30px; /* Aumentar el tamaño de la fuente */
+  margin: 20px 0;
+  font-size: 30px;
   font-weight: 900;
   text-align: center;
   color: var(--main-color);
@@ -283,19 +276,20 @@ h2 {
   border: 2px solid var(--input-focus);
 }
 
-.flip-card__btn:active, .button-confirm:active {
+.flip-card__btn:active,
+.button-confirm:active {
   box-shadow: 0px 0px var(--main-color);
   transform: translate(3px, 3px);
 }
 
 .flip-card__btn {
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
   width: 120px;
   height: 40px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
-  box-shadow: 4px 4px var (--main-color);
+  box-shadow: 4px 4px var(--main-color);
   font-size: 17px;
   font-weight: 600;
   color: var(--font-color);
