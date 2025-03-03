@@ -45,7 +45,8 @@ body {
   width: 100%;
   max-width: 500px; /* Aumentar el ancho máximo */
   margin-top: 10px; /* Mover un poco más arriba */
-  margin-left: 30px; /* Mover un poco más a la derecha */
+  margin-left: auto; /* Centrar horizontalmente */
+  margin-right: auto; /* Centrar horizontalmente */
 }
 
 .auth-form-container {
@@ -294,7 +295,7 @@ h2 {
   border-radius: 5px;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
+  box-shadow: 4px 4px var (--main-color);
   font-size: 17px;
   font-weight: 600;
   color: var(--font-color);
