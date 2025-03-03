@@ -13,11 +13,26 @@ const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [showRegister, setShowRegister] = useState(false);
+  const [isTitleHidden, setIsTitleHidden] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem('token');
     setToken(null);
     setIsAuthenticated(false);
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsTitleHidden(true);
+      } else {
+        setIsTitleHidden(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleLoginSuccess = (token) => {
@@ -40,7 +55,7 @@ const Index = () => {
   return (
     <div className="main-container">
       <motion.h1
-        className="app-title"
+        className={`app-title ${isTitleHidden ? 'hidden' : ''}`}
         initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
