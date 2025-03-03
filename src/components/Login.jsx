@@ -1,9 +1,8 @@
-// Login.jsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './Login.css';
 
-const Login = ({ onLoginSuccess }) => {
+const Login = ({ onLoginSuccess, onSwitchToRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,7 +18,6 @@ const Login = ({ onLoginSuccess }) => {
     const data = await response.json();
 
     if (data.success) {
-      // Almacena el user_id en localStorage para que App.jsx lo recupere
       localStorage.setItem("userId", data.user_id);
       onLoginSuccess(data.user_id);
     } else {
@@ -75,6 +73,16 @@ const Login = ({ onLoginSuccess }) => {
           transition={{ type: 'spring', stiffness: 300 }}
         >
           Iniciar Sesión
+        </motion.button>
+        <motion.button
+          type="button"
+          className="switch"
+          onClick={onSwitchToRegister}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
+          Registrarse
         </motion.button>
       </motion.form>
     </motion.div>

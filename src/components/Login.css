@@ -42,7 +42,8 @@
     font-weight: 600;
   }
   
-  .form .submit {
+  .form .submit,
+  .form .switch {
     padding: 1rem 0.75rem;
     width: 100%;
     display: flex;
@@ -58,7 +59,8 @@
     font-size: 0.9rem;
   }
   
-  .form .submit:hover {
+  .form .submit:hover,
+  .form .switch:hover {
     background-color: var(--clr);
     color: var(--bg-dark);
   }
