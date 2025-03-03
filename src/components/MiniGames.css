@@ -74,3 +74,21 @@
     opacity: 0.8;
     box-shadow: none;
   }
+  
+  .mini-games-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: var(--bg-color);
+    border-radius: 5px;
+    padding: 20px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .mini-games-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
