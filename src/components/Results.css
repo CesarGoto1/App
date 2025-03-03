@@ -52,6 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: center; /* Centrar el contenido del botón */
+  margin: 10px 0; /* Añadir margen vertical para separar los botones */
 }
 
 .results button:hover {

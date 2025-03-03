@@ -1,4 +1,3 @@
-// Results.jsx
 import React, { useState } from "react";
 import { Camera, Eye, EyeOff, PlayCircle, BarChart2 } from "lucide-react";
 import Webcam from "react-webcam";
