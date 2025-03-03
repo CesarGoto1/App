@@ -39,16 +39,14 @@ const Index = () => {
 
   return (
     <div className="main-container">
-      {!isAuthenticated && (
-        <motion.h1
-          className="app-title"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          HikariShiftX
-        </motion.h1>
-      )}
+      <motion.h1
+        className="app-title"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        FocusWare
+      </motion.h1>
 
       {isAuthenticated ? (
         <App onLogout={handleLogout} />
