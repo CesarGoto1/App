@@ -45,7 +45,7 @@ body {
   width: 100%;
   max-width: 500px; /* Aumentar el ancho máximo */
   margin-top: 10px; /* Mover un poco más arriba */
-  margin-left: 20px; /* Mover un poco más a la derecha */
+  margin-left: 30px; /* Mover un poco más a la derecha */
 }
 
 .auth-form-container {
