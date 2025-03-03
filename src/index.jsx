@@ -13,11 +13,23 @@ const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [showRegister, setShowRegister] = useState(false);
+  const [isTitleVisible, setIsTitleVisible] = useState(true);
 
   useEffect(() => {
     localStorage.removeItem('token');
     setToken(null);
     setIsAuthenticated(false);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const maxScroll = 200; // Ajusta este valor según sea necesario
+      setIsTitleVisible(scrollTop < maxScroll);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleLoginSuccess = (token) => {
@@ -40,10 +52,10 @@ const Index = () => {
   return (
     <div className="main-container">
       <motion.h1
-        className="app-title"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className={`app-title ${!isTitleVisible ? 'hidden' : ''}`}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: isTitleVisible ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
       >
         FocusWare
       </motion.h1>

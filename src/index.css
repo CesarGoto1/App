@@ -32,6 +32,11 @@ body {
   z-index: 1000; /* Asegura que el título esté por encima de otros elementos */
   background: linear-gradient(135deg, #1f1f1f, #0f0f0f); /* Fondo para el título */
   padding: 20px 0; /* Añadir padding para el título */
+  transition: opacity 0.5s ease; /* Transición para el desvanecimiento */
+}
+
+.app-title.hidden {
+  display: none; /* Ocultar el título cuando se desplaza hacia abajo */
 }
 
 .auth-container {
