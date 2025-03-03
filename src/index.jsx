@@ -13,24 +13,11 @@ const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [showRegister, setShowRegister] = useState(false);
-  const [opacity, setOpacity] = useState(1);
 
   useEffect(() => {
     localStorage.removeItem('token');
     setToken(null);
     setIsAuthenticated(false);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const maxScroll = 200; // Ajusta este valor según sea necesario
-      const newOpacity = Math.max(0, 1 - scrollTop / maxScroll);
-      setOpacity(newOpacity);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleLoginSuccess = (token) => {
@@ -55,7 +42,7 @@ const Index = () => {
       <motion.h1
         className="app-title"
         initial={{ opacity: 1 }}
-        animate={{ opacity }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         FocusWare
