@@ -32,6 +32,7 @@
 }
 
 .mini-games button {
+  all: unset; /* Ignorar cualquier configuración previa */
   width: 80%; /* Hacer los botones más anchos */
   height: 50px; /* Aumentar la altura de los botones */
   border-radius: 5px;
@@ -42,7 +43,7 @@
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease; /* Elimina la transformación */
   display: flex;
   align-items: center;
   justify-content: center; /* Centrar el contenido del botón */
@@ -51,8 +52,7 @@
 
 .mini-games button:hover {
   background-color: var(--input-focus);
-  transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  /* Elimina la transformación en hover */
 }
 
 .mini-games button:active {

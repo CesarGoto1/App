@@ -47,45 +47,38 @@
   color: #000000;
 }
 
-/* Botón de inicio: diseño limpio con borde neon, sin desplazamientos inesperados */
-.start-button {
-  background: transparent;
-  border: 2px solid #f3e600;
-  color: #f3e600;
-  padding: 15px 30px;
-  font-size: 1.5rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+
+.start-button,
+.close-button {
+    all: unset; /* Ignorar cualquier configuración previa */
+    width: 80%; /* Hacer los botones más anchos */
+    height: 50px; /* Aumentar la altura de los botones */
+    border-radius: 5px;
+    border: 2px solid #f3e600; /* Borde amarillo */
+    background-color: transparent; /* Fondo transparente */
+    color: #f3e600; /* Texto amarillo */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Elimina la transformación */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido del botón */
+    margin: 10px 0; /* Añadir margen vertical para separar los botones */
 }
 
 .start-button:hover {
-  background: #f3e600;
-  color: #000000;
+    background-color: #f3e600; /* Fondo amarillo en hover */
+    color: #000000; /* Texto negro en hover */
 }
 
-/* Botón de cerrar juego: nuevo estilo con borde cian neon y posición adecuada */
 .close-button {
-  background: transparent;
-  border: 2px solid #55ead4;
-  color: #55ead4;
-  margin-top: 100px;
-  padding: 12px 25px;
-  font-size: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+    border: 2px solid #55ead4; /* Borde cian */
+    color: #55ead4; /* Texto cian */
 }
 
 .close-button:hover {
-  background: #b10000;
-  color: #000000;
+    background-color: #b10000; /* Fondo rojo en hover */
+    color: #000000; /* Texto negro en hover */
 }
 
 /* Resalta el tiempo de reacción con efecto neon */
