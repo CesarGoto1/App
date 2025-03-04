@@ -102,7 +102,6 @@ body {
 .start-button:hover,
 .close-button:hover {
     background-color: var(--input-focus);
-    transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
