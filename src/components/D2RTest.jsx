@@ -155,7 +155,6 @@ const D2RTest = ({ startTest, endTest }) => {
     // Determinar si una celda está activa (en la fila actual)
     const isCellActive = (cellRow) => cellRow === currentRow;
 
-    // Determinar si una celda está bloqueada (en filas anteriores)
     const isCellLocked = (cellRow) => cellRow < currentRow;
 
     return (
