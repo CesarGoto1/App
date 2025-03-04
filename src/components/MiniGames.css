@@ -32,8 +32,8 @@
 }
 
 .mini-games button {
-  width: 100%; /* O el tamaño que necesites */
-  height: 50px; /* Mantener altura constante */
+  width: 80%; /* Hacer los botones más anchos */
+  height: 50px; /* Aumentar la altura de los botones */
   border-radius: 5px;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
@@ -48,13 +48,6 @@
   justify-content: center; /* Centrar el contenido del botón */
   margin: 10px 0; /* Añadir margen vertical para separar los botones */
 }
-.mini-games button:hover,
-.mini-games button:active,
-.mini-games button:focus {
-    background-color: var(--input-focus);
-    outline: none; /* Evitar el contorno azul al hacer clic */
-}
-
 
 .mini-games button:hover {
   background-color: var(--input-focus);

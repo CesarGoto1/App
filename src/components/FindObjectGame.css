@@ -75,27 +75,8 @@ body {
     color: #e91e63;
 }
 
+.start-button,
 .close-button {
-    background: transparent;
-    border: 2px solid #55ead4;
-    color: #55ead4;
-    padding: 12px 25px;
-    font-size: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0 auto; /* Evita desplazamientos inesperados */
-}
-
-.close-button:hover {
-    background: #b10000;
-    color: #000000;
-}
-
-.start-button{
     all:unset;
     width: 80%; /* Hacer los botones más anchos */
     height: 50px; /* Aumentar la altura de los botones */
@@ -112,13 +93,16 @@ body {
     align-items: center;
     justify-content: center; /* Centrar el contenido del botón */
     margin: 10px 0; /* Añadir margen vertical para separar los botones */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.start-button:hover{
+.start-button:hover,
+.close-button:hover {
     background-color: var(--input-focus);
+    transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
