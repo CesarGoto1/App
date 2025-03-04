@@ -91,7 +91,8 @@ body {
 }
 
 /* Columns */
-.left-column {
+.left-column,
+.right-column {
   width: 25%;
   height: 100%;
   background: #2a2a2a;
@@ -104,6 +105,7 @@ body {
 }
 
 .right-column {
+  width: 75%;
   --input-focus: #2d8cf0;
   --font-color: #fefefe;
   --font-color-sub: #7e7e7e;
@@ -127,18 +129,13 @@ body {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Simula un resplandor ligero */
 }
 
-.left-column:hover{
+.left-column:hover,
+.right-column:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .left-column:hover {
-  background: linear-gradient(135deg, #333333, #4a4a4a);
-  box-shadow: 0 15px 30px rgba(197, 0, 60, 0.4);
-  /* Holographic glow effect */
-}
-
-.right-column:hover {
   background: linear-gradient(135deg, #333333, #4a4a4a);
   box-shadow: 0 15px 30px rgba(197, 0, 60, 0.4);
   /* Holographic glow effect */
@@ -169,3 +166,21 @@ p {
   /* Sombra suave */
 }
 
+.mini-games-container {
+  --input-focus: #2d8cf0;
+  --font-color: #fefefe;
+  --font-color-sub: #7e7e7e;
+  --bg-color: #111;
+  --bg-color-alt: #7e7e7e;
+  --main-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-color);
+  border-radius: 5px;
+  padding: 20px;
+  border: 2px solid var(--main-color); /* Borde blanco */
+  box-shadow: 0 0 10px var(--main-color); /* Efecto similar al otro recuadro */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
