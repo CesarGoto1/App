@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { XCircle, PlayCircle } from 'lucide-react'; // Importa íconos de lucide-icons
+import { XCircle, PlayCircle, Trophy } from 'lucide-react'; // Importa íconos de lucide-icons
 import './FindObjectGame.css';
 
 const EMOJIS = ['🍎', '🍌', '🍇', '🍊', '🍐', '🍉', '🍓', '🥝', '🍒', '🥭', '🍍', '🥥'];
@@ -74,51 +74,55 @@ const FindObject = ({ onClose }) => {
     };
 
     return (
-        <div className="game-container">
-            <div className="game-board">
-                {playing ? (
-                    <>
-                        <div className="score-panel">
-                            <div>Puntuación: {score}</div>
-                            <div>
-                                Encuentra: <span className="target-object">{targetObject}</span>
-                            </div>
-                            <div>Tiempo: {time}s</div>
+        <div className="game-board">
+            {playing ? (
+                <>
+                    <div className="score-panel">
+                        <div>Puntuación: {score}</div>
+                        <div>
+                            Encuentra: <span className="target-object">{targetObject}</span>
                         </div>
-                        <div className="objects-container">
-                            {objects.map((object, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="object"
-                                    whileHover={{ scale: 1.1 }}
-                                    onClick={() => handleClick(object)}
-                                >
-                                    {object}
-                                </motion.div>
-                            ))}
+                        <div>Tiempo: {time}s</div>
+                    </div>
+                    <div className="objects-container">
+                        {objects.map((object, index) => (
+                            <motion.div
+                                key={index}
+                                className="object"
+                                whileHover={{ scale: 1.1 }}
+                                onClick={() => handleClick(object)}
+                            >
+                                {object}
+                            </motion.div>
+                        ))}
+                    </div>
+                    <div className="level-indicator">Nivel {level}</div>
+                </>
+            ) : time === 0 ? (
+                <motion.div
+                    className="game-over"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <div className="game-over-content">
+                        <h2>¡Tiempo terminado!</h2>
+                        <div className="puntuacion-final">
+                            <Trophy size={32} />
+                            <span>{score}</span>
                         </div>
-                        <div className="level-indicator">Nivel {level}</div>
-                    </>
-                ) : time === 0 ? (
-                    <motion.div
-                        className="game-over"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                    >
-                        <div>Puntuación Final: {score}</div>
                         <button
                             className="close-button"
                             onClick={() => { onClose && onClose(); }}
                         >
                             <XCircle size={24} /> Cerrar Juego
                         </button>
-                    </motion.div>
-                ) : (
-                    <button className="start-button" onClick={startGame}>
-                        <PlayCircle size={24} /> Iniciar Juego
-                    </button>
-                )}
-            </div>
+                    </div>
+                </motion.div>
+            ) : (
+                <button className="start-button" onClick={startGame}>
+                    <PlayCircle size={24} /> Iniciar Juego
+                </button>
+            )}
         </div>
     );
 };

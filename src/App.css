@@ -93,7 +93,7 @@ body {
 /* Columns */
 .left-column,
 .right-column {
-  width: 25%;
+  width: 25%; /* Mantener el ancho original */
   height: 100%;
   background: #2a2a2a;
   border-radius: 15px;
@@ -104,27 +104,29 @@ body {
   overflow: hidden;
 }
 
-.right-column button {
-  all: unset; /* Ignorar cualquier configuración previa */
-  width: 80%; /* Hacer los botones más anchos */
-  height: 50px; /* Aumentar la altura de los botones */
-  border-radius: 5px;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--font-color);
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Elimina la transformación */
+.right-column {
+  width: 75%;
+  --input-focus: #2d8cf0;
+  --font-color: #fefefe;
+  --font-color-sub: #7e7e7e;
+  --bg-color: #111;
+  --bg-color-alt: #7e7e7e;
+  --main-color: #fefefe;
   display: flex;
-  align-items: center;
-  justify-content: center; 
-  margin: 10px 0; 
+  flex-direction: column;
+  align-items: center; /* Centrar contenido horizontalmente */
+  gap: 20px;
+  background: var(--bg-color);
+  border-radius: 5px;
+  padding: 20px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.right-column button:hover {
-  background-color: var(--input-focus);
+.right-column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .right-column h2 {
@@ -142,6 +144,28 @@ body {
   margin-bottom: 20px;
 }
 
+.right-column button {
+  all: unset; /* Ignorar cualquier configuración previa */
+  width: 80%; /* Hacer los botones más anchos */
+  height: 50px; /* Aumentar la altura de los botones */
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Elimina la transformación */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar el contenido del botón */
+  margin: 10px 0; /* Añadir margen vertical para separar los botones */
+}
+
+.right-column button:hover {
+  background-color: var(--input-focus);
+}
 
 .right-column button:active {
   transform: scale(0.95);
@@ -181,4 +205,3 @@ body {
   border-radius: 10px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
-

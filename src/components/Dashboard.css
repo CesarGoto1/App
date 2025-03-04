@@ -1,0 +1,122 @@
+.dashboard-container {
+    width: 100%;
+    --input-focus: #2d8cf0;
+    --font-color: #fefefe;
+    --font-color-sub: #7e7e7e;
+    --bg-color: #111;
+    --bg-color-alt: #7e7e7e;
+    --main-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: var(--bg-color);
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 4px 4px var(--main-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .dashboard-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  }
+  
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--main-color);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: var(--font-color);
+    margin-bottom: 10px;
+  }
+  
+  .bg-black {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff; /* Borde blanco */
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .rounded {
+    border-radius: 5px;
+  }
+  
+  .shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .text-red-500 {
+    color: #f56565;
+  }
+  
+  .close-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .close-button {
+    all: unset; /* Ignorar cualquier configuración previa */
+    width: 90%; /* Hacer el botón más ancho */
+    height: 50px; /* Aumentar la altura de los botones */
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido del botón */
+    margin: 10px 0; /* Añadir margen vertical para separar los botones */
+    white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+  }
+  
+  .close-button:hover {
+    background-color: var(--input-focus);
+  }
+  
+  .div-datos {
+    border: white 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 4px 4px var(--main-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .div-datos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  }

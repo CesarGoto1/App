@@ -1,24 +1,58 @@
 .test-container {
+  width: 50%;
+  --input-focus: #2d8cf0;
+  --font-color: #fefefe;
+  --font-color-sub: #7e7e7e;
+  --bg-color: #111;
+  --bg-color-alt: #7e7e7e;
+  --main-color: #fefefe;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #121212;
-  color: #ffffff;
+  gap: 20px;
+  background: var(--bg-color);
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
   padding: 20px;
+  box-shadow: 4px 4px var(--main-color); /* Elimina el borde rojo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .instructions-container,
 .results-modal {
-  text-align: center;
+  width: 100%;
+  --input-focus: #2d8cf0;
+  --font-color: #fefefe;
+  --font-color-sub: #7e7e7e;
+  --bg-color: #111;
+  --bg-color-alt: #7e7e7e;
+  --main-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-color);
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
   padding: 20px;
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  width: 80%;
-  max-width: 600px;
-  margin: auto;
+  box-shadow: 4px 4px var(--main-color); /* Elimina la sombra verde */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.start-screen {
+  width: 500px; /* Aumentar el ancho del cuadro */
+  height: 50vh; /* Aumentar la altura del cuadro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.instructions-container:hover,
+.results-modal:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Simula un resplandor ligero */
 }
 
 .instructions-container h2,
@@ -37,22 +71,29 @@
 .instructions-container button,
 .end-test-button,
 .results-modal button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
+  all: unset; /* Ignorar cualquier configuración previa */
+  width: 80%; /* Hacer los botones más anchos */
+  height: 50px; /* Aumentar la altura de los botones */
   border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
   cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar el contenido del botón */
+  margin: 10px 0; /* Añadir margen vertical para separar los botones */
 }
 
 .start-screen button:hover,
 .instructions-container button:hover,
 .end-test-button:hover,
 .results-modal button:hover {
-  background-color: #45a049;
+  background-color: var(--input-focus);
 }
 
 .letters-grid {
@@ -64,6 +105,17 @@
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  background: var(--bg-color);
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 4px 4px var(--main-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.letters-grid:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
 }
 
 .letter {
@@ -103,4 +155,13 @@
 
 .results-modal button:hover {
   background-color: #1976d2;
+}
+
+/* Nuevas clases para botones seleccionados correctamente e incorrectamente */
+.letter.selected-correct {
+  background-color: #4caf50 !important;
+}
+
+.letter.selected-incorrect {
+  background-color: #f44336 !important;
 }

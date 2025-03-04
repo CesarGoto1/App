@@ -6,21 +6,17 @@ body {
     color: #ffffff;
 }
 
-#game-container {
+#game-board {
+    position: relative;
+    width: 800px; /* Ajustar el ancho */
+    height: 600px; /* Mantener la altura */
+    background: #2c2c2c; /* Fondo gris */
+    border-radius: 15px; /* Esquinas redondeadas */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-}
-
-#game-board {
-    position: relative;
-    width: 600px;
-    height: 600px;
-    background: #252525;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .point {
@@ -84,11 +80,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center; /* Centrar el contenido del botón */
-    margin: 10px 0; /* Añadir margen vertical para separar los botones */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .start-button:hover,
@@ -115,6 +106,9 @@ body {
     border-radius: 16px;
     text-align: center;
     max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .puntuacion-final {
@@ -126,8 +120,6 @@ body {
     font-size: 32px;
     font-weight: bold;
 }
-
-
 
 .ripple {
     position: absolute;

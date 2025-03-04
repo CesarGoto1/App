@@ -83,83 +83,81 @@ const PointGame = ({ onClose }) => {
     };
 
     return (
-        <div id="game-container">
-            <div id="game-board" onClick={manejarFallo}>
-                {jugando ? (
-                    <>
-                        <motion.div
-                            className="point"
-                            style={{
-                                top: `${punto.y}%`,
-                                left: `${punto.x}%`,
-                            }}
-                            onClick={manejarClick}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                            key={`${punto.x}-${punto.y}`}
-                        >
-                            <Target size={24} color="#fff" />
-                        </motion.div>
-
-                        <div className="indicadores">
-                            <div className="score-board">
-                                <Trophy size={20} /> {puntuacion}
-                                <span className="separador">|</span>
-                                <X size={20} /> {fallos}
-                            </div>
-                            <div className="timer">
-                                <Timer size={20} /> {tiempo}s
-                            </div>
-                        </div>
-
-                        {ripple && (
-                            <motion.div
-                                className="ripple"
-                                initial={{ scale: 0, opacity: 1 }}
-                                animate={{ scale: 2, opacity: 0 }}
-                                style={{
-                                    left: ripple.x,
-                                    top: ripple.y,
-                                }}
-                            />
-                        )}
-                    </>
-                ) : tiempo === 0 ? (
+        <div id="game-board" onClick={manejarFallo}>
+            {jugando ? (
+                <>
                     <motion.div
-                        className="game-over"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                    >
-                        <div className="game-over-content">
-                            <h2>¡Tiempo terminado!</h2>
-                            <div className="puntuacion-final">
-                                <Trophy size={32} />
-                                <span>{puntuacion}</span>
-                            </div>
-                            <button
-                                className="close-button"
-                                onClick={reiniciarJuego}
-                            >
-                                <X size={18} /> Cerrar Juego
-                            </button>
-                        </div>
-                    </motion.div>
-                ) : (
-                    <motion.button
-                        className="start-button"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setJugando(true);
+                        className="point"
+                        style={{
+                            top: `${punto.y}%`,
+                            left: `${punto.x}%`,
                         }}
-                        initial={{ scale: 1 }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        onClick={manejarClick}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                        key={`${punto.x}-${punto.y}`}
                     >
-                        <Play size={20} /> Comenzar
-                    </motion.button>
-                )}
-            </div>
+                        <Target size={24} color="#fff" />
+                    </motion.div>
+
+                    <div className="indicadores">
+                        <div className="score-board">
+                            <Trophy size={20} /> {puntuacion}
+                            <span className="separador">|</span>
+                            <X size={20} /> {fallos}
+                        </div>
+                        <div className="timer">
+                            <Timer size={20} /> {tiempo}s
+                        </div>
+                    </div>
+
+                    {ripple && (
+                        <motion.div
+                            className="ripple"
+                            initial={{ scale: 0, opacity: 1 }}
+                            animate={{ scale: 2, opacity: 0 }}
+                            style={{
+                                left: ripple.x,
+                                top: ripple.y,
+                            }}
+                        />
+                    )}
+                </>
+            ) : tiempo === 0 ? (
+                <motion.div
+                    className="game-over"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <div className="game-over-content">
+                        <h2>¡Tiempo terminado!</h2>
+                        <div className="puntuacion-final">
+                            <Trophy size={32} />
+                            <span>{puntuacion}</span>
+                        </div>
+                        <button
+                            className="close-button"
+                            onClick={reiniciarJuego}
+                        >
+                            <X size={18} /> Cerrar Juego
+                        </button>
+                    </div>
+                </motion.div>
+            ) : (
+                <motion.button
+                    className="start-button"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setJugando(true);
+                    }}
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <Play size={20} /> Comenzar
+                </motion.button>
+            )}
         </div>
     );
 };
