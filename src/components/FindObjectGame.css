@@ -77,16 +77,16 @@ body {
 
 .start-button,
 .close-button {
-    all:unset;
+    all: unset; /* Ignorar cualquier configuración previa */
     width: 80%; /* Hacer los botones más anchos */
     height: 50px; /* Aumentar la altura de los botones */
     border-radius: 5px;
-    border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
+    border: 2px solid #ff4757; /* Borde rojo */
+    background-color: #2ed573; /* Fondo verde */
+    box-shadow: 4px 4px #ff4757; /* Sombra roja */
     font-size: 17px;
     font-weight: 600;
-    color: var(--font-color);
+    color: #ffffff; /* Texto blanco */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
@@ -101,7 +101,7 @@ body {
 
 .start-button:hover,
 .close-button:hover {
-    background-color: var(--input-focus);
+    background-color: #ff6b81; /* Fondo rosa en hover */
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }

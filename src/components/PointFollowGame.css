@@ -67,22 +67,35 @@ body {
     opacity: 0.3;
 }
 
-.start-button {
+.start-button,
+.close-button {
+    all: unset; /* Ignorar cualquier configuración previa */
+    width: 80%; /* Hacer los botones más anchos */
+    height: 50px; /* Aumentar la altura de los botones */
+    border-radius: 5px;
+    border: 2px solid #2ed573; /* Borde verde */
+    background-color: #ff4757; /* Fondo rojo */
+    box-shadow: 4px 4px #2ed573; /* Sombra verde */
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff; /* Texto blanco */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido del botón */
+    margin: 10px 0; /* Añadir margen vertical para separar los botones */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 16px 32px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 18px;
-    background: #2ed573;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+}
+
+.start-button:hover,
+.close-button:hover {
+    background-color: #ff6b81; /* Fondo rosa en hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 .game-over {
@@ -115,22 +128,7 @@ body {
     font-weight: bold;
 }
 
-.close-button {
-    padding: 12px 24px;
-    background: #ff4757;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
 
-.close-button:hover {
-    background: #ff6b81;
-}
 
 .ripple {
     position: absolute;
