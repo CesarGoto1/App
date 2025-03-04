@@ -114,73 +114,96 @@ body {
   --main-color: #fefefe;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Centrar contenido horizontalmente */
   gap: 20px;
   background: var(--bg-color);
   border-radius: 5px;
   padding: 20px;
-  border: 2px solid var(--main-color); /* Borde blanco */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Elimina el borde rojo */
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.right-column:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Simula un resplandor ligero */
-}
-
-.left-column:hover,
 .right-column:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.left-column:hover {
-  background: linear-gradient(135deg, #333333, #4a4a4a);
-  box-shadow: 0 15px 30px rgba(197, 0, 60, 0.4);
-  /* Holographic glow effect */
-}
-
-/* Typography */
-h2 {
-  font-size: 1.8rem;
-  /* Ajuste de tamaño de fuente */
-  font-weight: 600;
-  color: #ffffff;
-  /* Rojo cálido */
+.right-column h2 {
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--main-color);
   margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
-  /* Efecto de neón */
 }
 
-p {
+.right-column p {
   font-size: 1rem;
-  /* Ajuste de tamaño de fuente */
-  line-height: 1.5;
-  margin: 10px 0;
-  color: #bbb;
+  color: var(--font-color);
   text-align: center;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  /* Sombra suave */
+  margin-bottom: 20px;
 }
 
-.mini-games-container {
-  --input-focus: #2d8cf0;
-  --font-color: #fefefe;
-  --font-color-sub: #7e7e7e;
-  --bg-color: #111;
-  --bg-color-alt: #7e7e7e;
-  --main-color: #fefefe;
+.right-column button {
+  width: 80%; /* Hacer los botones más anchos */
+  height: 50px; /* Aumentar la altura de los botones */
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar el contenido del botón */
+  margin: 10px 0; /* Añadir margen vertical para separar los botones */
+}
+
+.right-column button:hover {
+  background-color: var(--input-focus);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.right-column button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-column button:disabled {
+  background-color: #777777;
+  color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
+.camera-container {
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
   background: var(--bg-color);
-  border-radius: 5px;
-  padding: 20px;
-  border: 2px solid var(--main-color); /* Borde blanco */
-  box-shadow: 0 0 10px var(--main-color); /* Efecto similar al otro recuadro */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
+
+.camera-status {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.camera-feed {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
