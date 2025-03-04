@@ -31,56 +31,58 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
   };
 
   return (
-    <div className="mini-games">
-      <h2>🎮 Mini Juegos</h2>
+    <div className="mini-games-container">
+      <div className="mini-games">
+        <h2>🎮 Mini Juegos</h2>
 
-      {/* Botón para "Seguir el punto" */}
-      <button
-        onClick={() => toggleGame("pointFollowGame")}
-        className={disabledGames.includes("pointFollowGame") ? "disabled" : ""}
-        disabled={disabledGames.includes("pointFollowGame")}
-      >
-        {disabledGames.includes("pointFollowGame")
-          ? "❌ Seguir el punto"
-          : "➡️ Seguir el punto"}
-      </button>
-      {activeGame === "pointFollowGame" && (
-        <div className="follow-game-container">
-          <PointFollowGame onClose={() => closeGame("pointFollowGame")} />
-        </div>
-      )}
+        {/* Botón para "Seguir el punto" */}
+        <button
+          onClick={() => toggleGame("pointFollowGame")}
+          className={disabledGames.includes("pointFollowGame") ? "disabled" : ""}
+          disabled={disabledGames.includes("pointFollowGame")}
+        >
+          {disabledGames.includes("pointFollowGame")
+            ? "❌ Seguir el punto"
+            : "➡️ Seguir el punto"}
+        </button>
+        {activeGame === "pointFollowGame" && (
+          <div className="follow-game-container">
+            <PointFollowGame onClose={() => closeGame("pointFollowGame")} />
+          </div>
+        )}
 
-      {/* Botón para "Buscar el objeto" */}
-      <button
-        onClick={() => toggleGame("findObjectGame")}
-        className={disabledGames.includes("findObjectGame") ? "disabled" : ""}
-        disabled={disabledGames.includes("findObjectGame")}
-      >
-        {disabledGames.includes("findObjectGame")
-          ? "❌ Buscar el objeto"
-          : "🔍 Buscar el objeto"}
-      </button>
-      {activeGame === "findObjectGame" && (
-        <div className="find-object-game-container">
-          <FindObjectGame onClose={() => closeGame("findObjectGame")} />
-        </div>
-      )}
+        {/* Botón para "Buscar el objeto" */}
+        <button
+          onClick={() => toggleGame("findObjectGame")}
+          className={disabledGames.includes("findObjectGame") ? "disabled" : ""}
+          disabled={disabledGames.includes("findObjectGame")}
+        >
+          {disabledGames.includes("findObjectGame")
+            ? "❌ Buscar el objeto"
+            : "🔍 Buscar el objeto"}
+        </button>
+        {activeGame === "findObjectGame" && (
+          <div className="find-object-game-container">
+            <FindObjectGame onClose={() => closeGame("findObjectGame")} />
+          </div>
+        )}
 
-      {/* Botón para "Reacción rápida" */}
-      <button
-        onClick={() => toggleGame("reactionGame")}
-        className={disabledGames.includes("reactionGame") ? "disabled" : ""}
-        disabled={disabledGames.includes("reactionGame")}
-      >
-        {disabledGames.includes("reactionGame")
-          ? "❌ Reacción rápida"
-          : "⚡ Reacción rápida"}
-      </button>
-      {activeGame === "reactionGame" && (
-        <div className="reaction-game-container">
-          <ReactionGame onClose={() => closeGame("reactionGame")} />
-        </div>
-      )}
+        {/* Botón para "Reacción rápida" */}
+        <button
+          onClick={() => toggleGame("reactionGame")}
+          className={disabledGames.includes("reactionGame") ? "disabled" : ""}
+          disabled={disabledGames.includes("reactionGame")}
+        >
+          {disabledGames.includes("reactionGame")
+            ? "❌ Reacción rápida"
+            : "⚡ Reacción rápida"}
+        </button>
+        {activeGame === "reactionGame" && (
+          <div className="reaction-game-container">
+            <ReactionGame onClose={() => closeGame("reactionGame")} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
