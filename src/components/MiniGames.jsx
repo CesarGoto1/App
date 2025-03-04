@@ -45,7 +45,7 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
           : "➡️ Seguir el punto"}
       </button>
       {activeGame === "pointFollowGame" && (
-        <div className="mini-games-container">
+        <div className="follow-game-container">
           <PointFollowGame onClose={() => closeGame("pointFollowGame")} />
         </div>
       )}
@@ -61,7 +61,7 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
           : "🔍 Buscar el objeto"}
       </button>
       {activeGame === "findObjectGame" && (
-        <div className="mini-games-container">
+        <div className="find-object-game-container">
           <FindObjectGame onClose={() => closeGame("findObjectGame")} />
         </div>
       )}
@@ -77,7 +77,7 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
           : "⚡ Reacción rápida"}
       </button>
       {activeGame === "reactionGame" && (
-        <div className="mini-games-container">
+        <div className="reaction-game-container">
           <ReactionGame onClose={() => closeGame("reactionGame")} />
         </div>
       )}

@@ -1,76 +1,87 @@
 /* MiniGames.css */
-.mini-games,
-.mini-games-container {
-  --input-focus: #2d8cf0;
-  --font-color: #fefefe;
-  --font-color-sub: #7e7e7e;
-  --bg-color: #111;
-  --bg-color-alt: #7e7e7e;
-  --main-color: #fefefe;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centrar contenido horizontalmente */
-  gap: 20px;
-  background: var(--bg-color);
-  border-radius: 5px;
-  padding: 20px;
-  border: 2px solid var(--main-color);
-  box-shadow: 4px 4px var(--main-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mini-games:hover,
-.mini-games-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.mini-games h2,
-.mini-games-container h2 {
-  font-size: 25px;
-  font-weight: 900;
-  text-align: center;
-  color: var(--main-color);
-  margin-bottom: 20px;
-}
-
-.mini-games button,
-.mini-games-container button {
-  width: 80%; /* Hacer los botones más anchos */
-  height: 50px; /* Aumentar la altura de los botones */
-  border-radius: 5px;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--font-color);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Centrar el contenido del botón */
-  margin: 10px 0; /* Añadir margen vertical para separar los botones */
-}
-
-.mini-games button:hover,
-.mini-games-container button:hover {
-  background-color: var(--input-focus);
-  transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-.mini-games button:active,
-.mini-games-container button:active {
-  transform: scale(0.95);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.mini-games button:disabled,
-.mini-games-container button:disabled {
-  background-color: #777777;
-  color: #cccccc;
-  cursor: not-allowed;
-  opacity: 0.8;
-  box-shadow: none;
-}
+.mini-games {
+    --input-focus: #2d8cf0;
+    --font-color: #fefefe;
+    --font-color-sub: #7e7e7e;
+    --bg-color: #111;
+    --bg-color-alt: #7e7e7e;
+    --main-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar contenido horizontalmente */
+    gap: 20px;
+    background: var(--bg-color);
+    border-radius: 5px;
+    padding: 20px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .mini-games:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mini-games h2 {
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    color: var(--main-color);
+    margin-bottom: 20px;
+  }
+  
+  .mini-games button {
+    width: 80%; /* Hacer los botones más anchos */
+    height: 50px; /* Aumentar la altura de los botones */
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido del botón */
+    margin: 10px 0; /* Añadir margen vertical para separar los botones */
+  }
+  
+  .mini-games button:hover {
+    background-color: var(--input-focus);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mini-games button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mini-games button:disabled {
+    background-color: #777777;
+    color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: none;
+  }
+  
+  .mini-games-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: var(--bg-color);
+    border-radius: 5px;
+    padding: 20px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .mini-games-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
