@@ -119,8 +119,8 @@ body {
   transition: background-color 0.3s ease; /* Elimina la transformación */
   display: flex;
   align-items: center;
-  justify-content: center; /* Centrar el contenido del botón */
-  margin: 10px 0; /* Añadir margen vertical para separar los botones */
+  justify-content: center; 
+  margin: 10px 0; 
 }
 
 .right-column button:hover {
