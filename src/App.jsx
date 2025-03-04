@@ -5,7 +5,6 @@ import Results from "./components/Results";
 import PantallaBienvenida from "./components/PantallaBienvenida";
 import D2RTest from "./components/D2RTest";
 import "./App.css";
-import "./components/MiniGames.css"; // Importa los estilos de MiniGames
 
 /* global GazeRecorderAPI */
 
@@ -175,7 +174,7 @@ const App = () => {
       )}
 
       {startTest && (
-        <div className="mini-game-container mini-games">
+        <div className="mini-game-container">
           <D2RTest endTest={handleTestEnd} />
         </div>
       )}
