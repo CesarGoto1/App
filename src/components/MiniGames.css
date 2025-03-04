@@ -14,7 +14,7 @@
   border: 2px solid var(--main-color);
   border-radius: 5px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Elimina el borde rojo */
+  box-shadow: 4px 4px var(--main-color); /* Elimina el borde rojo */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
