@@ -170,8 +170,8 @@ const D2RTest = ({ startTest, endTest }) => {
                         <FaInfoCircle /> Instrucciones
                     </h2>
                     <p>
-                        Este test consiste en identificar las letras <strong>D''</strong> en un
-                        conjunto de estímulos. Haz clic únicamente en las <strong>D''</strong> para
+                        Este test consiste en identificar las letras <strong>d''</strong> en un
+                        conjunto de estímulos. Haz clic únicamente en las <strong>d''</strong> para
                         obtener puntos.
                     </p>
                     <p>

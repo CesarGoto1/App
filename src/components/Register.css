@@ -7,22 +7,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem; /* Aumentar el espacio entre los elementos */
   width: 100%;
-  max-width: 400px; /* Asegúrate de que el ancho máximo sea el mismo que el de Login */
+  max-width: 600px; /* Aumentar el ancho máximo */
 }
 
 .form .input-span {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem; /* Aumentar el espacio entre los elementos */
 }
 
 .form input[type="text"],
 .form input[type="password"] {
   border-radius: 0.5rem;
-  padding: 1.5rem 1rem;
+  padding: 2rem 1.5rem; /* Aumentar el padding */
   width: 100%;
   border: none;
   display: flex;
@@ -30,7 +30,7 @@
   gap: 0.5rem;
   background-color: var(--clr-alpha);
   outline: 2px solid var(--bg-dark);
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Aumentar el tamaño de la fuente */
 }
 
 .form input[type="text"]:focus,
@@ -42,12 +42,12 @@
   align-self: flex-start;
   color: var(--clr);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Aumentar el tamaño de la fuente */
 }
 
 .form .submit,
 .form .switch {
-  padding: 1.5rem 1rem;
+  padding: 2rem 1.5rem; /* Aumentar el padding */
   width: 100%;
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@
   cursor: pointer;
   transition: all 300ms;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Aumentar el tamaño de la fuente */
 }
 
 .form .submit:hover,
@@ -74,5 +74,5 @@
 }
 
 .span a {
-  color: var (--clr);
-}
+  color: var(--clr);
+} 
