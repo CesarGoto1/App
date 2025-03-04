@@ -88,7 +88,7 @@ body {
     font-weight: 600;
     color: var(--font-color);
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Elimina la transformación */
+    transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center; /* Centrar el contenido del botón */
@@ -105,7 +105,6 @@ body {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
-
 
 .level-indicator {
     position: absolute;
