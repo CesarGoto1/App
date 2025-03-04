@@ -32,7 +32,7 @@ const MiniGames = ({ onGameStart, onGameEnd, onAllGamesComplete }) => {
 
   return (
     <div className="mini-games">
-      <h2>🎮 Mini Juegos</h2>
+      <h2>Actividades</h2>
 
       {/* Botón para "Seguir el punto" */}
       <button
