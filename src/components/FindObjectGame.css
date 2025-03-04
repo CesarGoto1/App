@@ -87,7 +87,7 @@ body {
     font-weight: 600;
     color: var(--font-color);
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease; /* Elimina la transformación */
     display: flex;
     align-items: center;
     justify-content: center; /* Centrar el contenido del botón */
@@ -96,6 +96,12 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.start-button:hover,
+.close-button:hover {
+    background-color: var(--input-focus);
+    /* Elimina la transformación en hover */
 }
 
 
