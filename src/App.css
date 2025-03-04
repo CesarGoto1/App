@@ -125,7 +125,6 @@ body {
 
 .right-column button:hover {
   background-color: var(--input-focus);
-  /* Elimina la transformación en hover */
 }
 
 .right-column h2 {
