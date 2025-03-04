@@ -77,6 +77,7 @@ body {
 
 .start-button,
 .close-button {
+    all:unset;
     width: 80%; /* Hacer los botones más anchos */
     height: 50px; /* Aumentar la altura de los botones */
     border-radius: 5px;
