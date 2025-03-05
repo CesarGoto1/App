@@ -80,13 +80,13 @@ body {
 
 /* Results container */
 .results {
-  width: 350px;
+  width: 100%;
   height: 100%;
   transition: all 0.3s ease;
 }
 
 .results.camera-active {
-  width: 400px;
+  width: 35%;
   height: 100%;
 }
 
