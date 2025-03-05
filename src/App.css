@@ -106,6 +106,7 @@ body {
 
 .right-column {
   width: 75%;
+  max-width: 800px; /* Establecer un ancho máximo fijo */
   --input-focus: #2d8cf0;
   --font-color: #fefefe;
   --font-color-sub: #7e7e7e;

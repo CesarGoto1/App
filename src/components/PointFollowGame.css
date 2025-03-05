@@ -8,8 +8,8 @@ body {
 
 #game-board {
     position: relative;
-    width: 600px; /* Ajustar el ancho a 400px */
-    height: 600px; /* Mantener la altura */
+    width: 400px; /* Ajustar el ancho a 400px */
+    height: 400px; /* Mantener la altura */
     background: #2c2c2c; /* Fondo gris */
     border-radius: 15px; /* Esquinas redondeadas */
     overflow: hidden;

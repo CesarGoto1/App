@@ -1,5 +1,6 @@
 .mini-games {
   width: 100%;
+  max-width: 800px; /* Establecer un ancho máximo fijo */
   --input-focus: #2d8cf0;
   --font-color: #fefefe;
   --font-color-sub: #7e7e7e;
@@ -33,7 +34,8 @@
 
 .mini-games button {
   all: unset; /* Ignorar cualquier configuración previa */
-  width: 80%; /* Hacer los botones más anchos */
+  width: 100%; /* Hacer los botones del mismo ancho que el contenedor */
+  max-width: 400px; /* Establecer un ancho máximo fijo */
   height: 50px; /* Aumentar la altura de los botones */
   border-radius: 5px;
   border: 2px solid var(--main-color);
@@ -56,7 +58,7 @@
 }
 
 .mini-games button:active {
-  transform: scale(0.95);
+  background-color: var(--input-focus); /* Cambiar el color al hacer clic */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
