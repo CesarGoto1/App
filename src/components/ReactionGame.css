@@ -1,6 +1,6 @@
 #game-board {
   position: relative;
-  width: 800px; /* Ajustar el ancho */
+  width: 600px; /* Ajustar el ancho */
   height: 600px; /* Mantener la altura */
   background-color: #2c2c2c; /* Fondo gris */
   border-radius: 15px; /* Esquinas redondeadas */
