@@ -80,20 +80,19 @@ body {
 
 /* Results container */
 .results {
-  width: 100%;
+  width: 350px;
   height: 100%;
   transition: all 0.3s ease;
 }
 
 .results.camera-active {
-  width: 35%;
+  width: 400px;
   height: 100%;
 }
 
 /* Columns */
-.left-column,
-.right-column {
-  width: 25%; /* Mantener el ancho original */
+.left-column{
+  width: 200px; /* Mantener el ancho original */
   height: 100%;
   background: #2a2a2a;
   border-radius: 15px;
@@ -105,8 +104,8 @@ body {
 }
 
 .right-column {
-  width: 75%;
-  max-width: 800px; /* Establecer un ancho máximo fijo */
+  width: 600px;
+  height: 100%;
   --input-focus: #2d8cf0;
   --font-color: #fefefe;
   --font-color-sub: #7e7e7e;
