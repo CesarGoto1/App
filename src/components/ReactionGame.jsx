@@ -29,6 +29,11 @@ const ReactionGame = ({ onClose }) => {
     }
   };
 
+  const handleClose = (e) => {
+    e.stopPropagation();
+    onClose && onClose();
+  };
+
   return (
     <div id="game-board" onClick={handleClick}>
       {gameState === "initial" && (
@@ -62,10 +67,7 @@ const ReactionGame = ({ onClose }) => {
           <div className="result-container">
             <motion.button
               className="close-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose && onClose();
-              }}
+              onClick={handleClose}
             >
               <XCircle size={24} /> Cerrar Juego
             </motion.button>
@@ -81,10 +83,7 @@ const ReactionGame = ({ onClose }) => {
           <div className="result-container">
             <motion.button
               className="close-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose && onClose();
-              }}
+              onClick={handleClose}
             >
               <XCircle size={24} /> Cerrar Juego
             </motion.button>

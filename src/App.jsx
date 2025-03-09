@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState, useEffect, useRef } from "react";
 import MiniJuegos from "./components/MiniGames";
 import Results from "./components/Results";
@@ -179,7 +178,7 @@ const App = () => {
         </div>
       )}
 
-      {cameraEnabled && !isMiniGameActive && !startTest && (
+      {cameraEnabled && (
         <div className="right-column">
           <MiniJuegos onGameEnd={handleGameEnd} />
         </div>

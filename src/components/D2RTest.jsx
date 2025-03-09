@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaInfoCircle, FaPlay, FaStop, FaHourglassHalf } from 'react-icons/fa';
+import { FaInfoCircle, FaPlay, FaHourglassHalf } from 'react-icons/fa';
 import './D2RTest.css';
 
 const D2RTest = ({ startTest, endTest }) => {
@@ -158,7 +158,7 @@ const D2RTest = ({ startTest, endTest }) => {
     const isCellLocked = (cellRow) => cellRow < currentRow;
 
     return (
-        <div className="test-container">
+        <div>
             {isInstructionsVisible && (
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -242,12 +242,9 @@ const D2RTest = ({ startTest, endTest }) => {
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => {
-                            setIsResultsVisible(false);
-                            endTest();
-                        }}
+                        onClick={endTest}
                     >
-                        Cerrar
+                        Ver Resultados
                     </motion.button>
                 </motion.div>
             )}
