@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import Login from './components/Login';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard'; // Importa el componente Dashboard
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,6 +15,7 @@ const Index = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [showRegister, setShowRegister] = useState(false);
   const [isTitleHidden, setIsTitleHidden] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false); // Estado para controlar la visibilidad del Dashboard
 
   useEffect(() => {
     localStorage.removeItem('token');
@@ -52,6 +54,11 @@ const Index = () => {
     setIsAuthenticated(false);
   };
 
+  const handleCloseDashboard = () => {
+    setShowDashboard(false);
+    setIsAuthenticated(false); // Redirigir al inicio de sesión
+  };
+
   return (
     <div className="main-container">
       <motion.h1
@@ -64,7 +71,11 @@ const Index = () => {
       </motion.h1>
 
       {isAuthenticated ? (
-        <App onLogout={handleLogout} />
+        showDashboard ? (
+          <Dashboard onClose={handleCloseDashboard} />
+        ) : (
+          <App onLogout={handleLogout} />
+        )
       ) : (
         <div className="auth-container">
           <motion.div
@@ -103,6 +114,8 @@ const Index = () => {
     </div>
   );
 };
+
+export default Index;
 
 root.render(
   <React.StrictMode>

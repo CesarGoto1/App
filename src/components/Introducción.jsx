@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
 import './Introducción.css';
 import MiniJuegos from './MiniGames';
@@ -8,11 +8,25 @@ import ReactionGame from './ReactionGame';
 import D2RTest from './D2RTest';
 import Dashboard from './Dashboard';
 
+/* global GazeRecorderAPI, CY */
+
 const Introducción = ({ onClose }) => {
   const [step, setStep] = useState(0);
   const [reactionGameCompleted, setReactionGameCompleted] = useState(false);
   const [showD2RTest, setShowD2RTest] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [cameraEnabled, setCameraEnabled] = useState(false);
+  const [sessionData, setSessionData] = useState({ morphcast: [], gazeRecorder: [] });
+  const [stopMorphcastFn, setStopMorphcastFn] = useState(null);
+  const stopGazeRecorderFn = useRef(null);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(Number(storedUserId));
+    }
+  }, []);
 
   const handleNextStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -23,6 +37,104 @@ const Introducción = ({ onClose }) => {
     handleNextStep();
   };
 
+  const saveSessionData = () => {
+    if (!userId) {
+      console.error("No se encontró userId, no se pueden guardar los datos de sesión");
+      return;
+    }
+    if (!sessionData.morphcast.length && !sessionData.gazeRecorder.length) return;
+
+    const payload = {
+      user_id: userId,
+      timestamp: new Date().toISOString(),
+      session_data: sessionData,
+    };
+
+    // Llamada al backend
+    fetch("https://backend-production-4e30.up.railway.app/save_session_data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Datos guardados:", data);
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
+  const startMorphcast = async () => {
+    const scriptLoader = (src, config = null) =>
+      new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.onload = resolve;
+        if (config) script.setAttribute("data-config", config);
+        script.src = src;
+        document.head.appendChild(script);
+      });
+
+    await scriptLoader("https://sdk.morphcast.com/mphtools/v1.1/mphtools.js", "compatibilityUI, compatibilityAutoCheck");
+    await scriptLoader("https://ai-sdk.morphcast.com/v1.16/ai-sdk.js");
+
+    const loader = CY.loader();
+    loader
+      .licenseKey("sk37a377d84be2f65ba7e25230e108043c5b34ee038f7d")
+      .addModule(CY.modules().FACE_ATTENTION.name, { smoothness: 0.83 })
+      .addModule(CY.modules().DATA_AGGREGATOR.name, { initialWaitMs: 2000, periodMs: 1000 });
+
+    const { start, stop } = await loader.load();
+    start();
+
+    const handleMorphcastData = (e) => {
+      setSessionData((prevData) => ({
+        ...prevData,
+        morphcast: [...prevData.morphcast, { timestamp: new Date().toISOString(), data: e.detail }],
+      }));
+    };
+
+    window.addEventListener(CY.modules().DATA_AGGREGATOR.eventName, handleMorphcastData);
+    
+    return () => {
+      stop();
+      window.removeEventListener(CY.modules().DATA_AGGREGATOR.eventName, handleMorphcastData);
+    };
+  };
+
+  const startGazeRecorder = () => {
+    const script = document.createElement("script");
+    script.src = "https://app.gazerecorder.com/GazeRecorderAPI.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      GazeRecorderAPI.Rec();
+    };
+
+    script.onerror = () => console.error("Error al cargar GazeRecorder");
+
+    return () => {
+      GazeRecorderAPI.StopRec();
+      const gazeData = GazeRecorderAPI.GetRecData();
+      setSessionData((prevData) => ({
+        ...prevData,
+        gazeRecorder: [...prevData.gazeRecorder, { timestamp: new Date().toISOString(), data: gazeData }],
+      }));
+    };
+  };
+
+  useEffect(() => {
+    if (cameraEnabled) {
+      startMorphcast().then((stop) => setStopMorphcastFn(() => stop));
+      stopGazeRecorderFn.current = startGazeRecorder();
+    } else {
+      if (stopMorphcastFn) stopMorphcastFn();
+      if (stopGazeRecorderFn.current) stopGazeRecorderFn.current();
+      saveSessionData();
+      setSessionData({ morphcast: [], gazeRecorder: [] });
+    }
+  }, [cameraEnabled]);
+
   const handleStartTest = () => {
     setShowD2RTest(true);
   };
@@ -32,6 +144,14 @@ const Introducción = ({ onClose }) => {
     setShowD2RTest(false);
     setShowDashboard(true);
   };
+
+  useEffect(() => {
+    if (step >= 2 && step <= 7) {
+      setCameraEnabled(true);
+    } else {
+      setCameraEnabled(false);
+    }
+  }, [step]);
 
   const renderContent = () => {
     if (showDashboard) {
@@ -49,15 +169,6 @@ const Introducción = ({ onClose }) => {
             <h1>Bienvenido a FocusWare</h1>
             <p>
               Este programa está diseñado para evaluar tu nivel de atención mediante el uso de tecnologías avanzadas de reconocimiento facial y rastreo ocular.
-            </p>
-            <p>
-              Durante el uso del programa, la cámara recolectará datos sobre tus emociones y patrones de atención. Estos datos se utilizarán para analizar tu rendimiento y proporcionar resultados detallados.
-            </p>
-            <p>
-              El programa consta de tres actividades interactivas y un test final. Asegúrate de completar todas las actividades para obtener una evaluación precisa.
-            </p>
-            <p>
-              ¡Buena suerte y disfruta de la experiencia!
             </p>
             <button className="btn" onClick={handleNextStep}>Continuar</button>
           </div>
@@ -89,6 +200,16 @@ const Introducción = ({ onClose }) => {
             <p>
               En esta actividad, deberás seguir un punto que se moverá aleatoriamente por la pantalla. Haz clic en el punto lo más rápido posible para ganar puntos.
             </p>
+            <div className="camera-verification">
+              <Webcam
+                audio={false}
+                screenshotFormat="image/jpeg"
+                width="300px"
+                height="300px"
+                videoConstraints={{ facingMode: "user" }}
+                className="camera-feed"
+              />
+            </div>
             <button className="btn" onClick={handleNextStep}>Comenzar</button>
           </div>
         );
@@ -117,6 +238,16 @@ const Introducción = ({ onClose }) => {
             <p>
               En esta actividad, deberás encontrar un objeto específico entre varios objetos en la pantalla. Haz clic en el objeto correcto para ganar puntos.
             </p>
+            <div className="camera-verification">
+              <Webcam
+                audio={false}
+                screenshotFormat="image/jpeg"
+                width="300px"
+                height="300px"
+                videoConstraints={{ facingMode: "user" }}
+                className="camera-feed"
+              />
+            </div>
             <button className="btn" onClick={handleNextStep}>Comenzar</button>
           </div>
         );
@@ -143,8 +274,18 @@ const Introducción = ({ onClose }) => {
           <div className="introduccion-container">
             <h1>Instrucciones: Reacción Rápida</h1>
             <p>
-              En esta actividad, deberás reaccionar lo más rápido posible cuando veas una señal en la pantalla. Haz clic en la señal para medir tu tiempo de reacción.
+              En esta actividad, deberás reaccionar lo más rápido posible a los estímulos que aparezcan en la pantalla. Haz clic en los estímulos para ganar puntos.
             </p>
+            <div className="camera-verification">
+              <Webcam
+                audio={false}
+                screenshotFormat="image/jpeg"
+                width="300px"
+                height="300px"
+                videoConstraints={{ facingMode: "user" }}
+                className="camera-feed"
+              />
+            </div>
             <button className="btn" onClick={handleNextStep}>Comenzar</button>
           </div>
         );
@@ -166,20 +307,26 @@ const Introducción = ({ onClose }) => {
             </div>
           </div>
         );
-      case 8:
-        return (
-          <div className="introduccion-container">
-            <h1>¡Felicidades!</h1>
-            <p>Has completado todas las actividades. Ahora puedes iniciar el test final.</p>
-            <button className="btn" onClick={handleStartTest} disabled={!reactionGameCompleted}>Iniciar Test</button>
-          </div>
-        );
-      default:
-        return null;
+        case 8:
+          return (
+            <div className="introduccion-container">
+              <h1>Test D2R</h1>
+              <p>
+                Ahora que has completado todas las actividades, es hora de realizar el test D2R.
+              </p>
+              <button className="btn" onClick={handleStartTest}>Ver Instrucciones</button>
+            </div>
+          );
+        default:
+          return null;
     }
   };
 
-  return <div>{renderContent()}</div>;
+  return (
+    <div className="introduccion">
+      {renderContent()}
+    </div>
+  );
 };
 
 export default Introducción;

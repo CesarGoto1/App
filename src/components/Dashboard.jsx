@@ -1,4 +1,3 @@
-// Dashboard.jsx
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 
@@ -6,6 +5,7 @@ const Dashboard = ({ onClose }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showThankYou, setShowThankYou] = useState(false); // Nuevo estado para el mensaje de agradecimiento
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -32,12 +32,33 @@ const Dashboard = ({ onClose }) => {
     fetchResults();
   }, []);
 
+  const handleClose = () => {
+    setShowThankYou(true); // Mostrar el mensaje de agradecimiento
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userId"); // Eliminar el user_id del localStorage
+    window.location.href = "/login"; // Redirigir a la página de inicio de sesión
+  };
+
   if (loading) {
     return <div className="p-4">Cargando resultados...</div>;
   }
 
   if (error) {
     return <div className="p-4 text-red-500">Error: {error}</div>;
+  }
+
+  if (showThankYou) {
+    return (
+      <div className="dashboard-container">
+        <h1>Gracias por usar FocusWare</h1>
+        <p>¡Hasta la próxima!</p>
+        <button onClick={handleLogout} className="close-button">
+          Cerrar Sesión
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -92,12 +113,19 @@ const Dashboard = ({ onClose }) => {
         )}
       </div>
       
-        <button
-          onClick={onClose}
-          className="close-button"
-        >
-          Cerrar Dashboard
-        </button>
+      <button onClick={handleClose} className="close-button">
+        Cerrar Dashboard
+      </button>
+
+      {showThankYou && (
+        <div className="dashboard-container">
+          <h1>Gracias por usar FocusWare</h1>
+          <p>¡Hasta la próxima!</p>
+          <button onClick={handleLogout} className="close-button">
+            Cerrar Sesión
+          </button>
+        </div>
+      )}
     </div>
   );
 };

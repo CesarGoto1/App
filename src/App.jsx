@@ -25,17 +25,6 @@ const App = () => {
     }
   }, []);
 
-  // Función para descargar el JSON
-  const downloadJSON = (data) => {
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: "application/json",
-    });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `session_data_${new Date().toISOString()}.json`;
-    link.click();
-  };
-
   const saveSessionData = () => {
     if (!userId) {
       console.error("No se encontró userId, no se pueden guardar los datos de sesión");
@@ -58,8 +47,6 @@ const App = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Datos guardados:", data);
-        // Generar y descargar el archivo JSON
-        //downloadJSON(payload);
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -80,7 +67,6 @@ const App = () => {
 
     const CY = window.CY;
     const loader = CY.loader();
-
     loader
       .licenseKey("sk37a377d84be2f65ba7e25230e108043c5b34ee038f7d")
       .addModule(CY.modules().FACE_ATTENTION.name, { smoothness: 0.83 })
@@ -163,26 +149,14 @@ const App = () => {
           <Results
             setCameraEnabled={setCameraEnabled}
             cameraEnabled={cameraEnabled}
-            startTest={handleStartTest}
-            gamesCompleted={gamesCompleted === 3}
-            token={null}
-            testFinished={testFinished}
-            toggleCameraEnabled={toggleCameraEnabled}
+            handleStartTest={handleStartTest}
+            handleTestEnd={handleTestEnd}
+            handleGameEnd={handleGameEnd}
           />
         </div>
       )}
-
-      {startTest && (
-        <div className="mini-game-container">
-          <D2RTest endTest={handleTestEnd} />
-        </div>
-      )}
-
-      {cameraEnabled && (
-        <div className="right-column">
-          <MiniJuegos onGameEnd={handleGameEnd} />
-        </div>
-      )}
+      {isMiniGameActive && <MiniJuegos onGameEnd={handleGameEnd} />}
+      {startTest && <D2RTest onTestEnd={handleTestEnd} />}
     </div>
   );
 };
