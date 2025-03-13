@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
+import Introducción from "./Introducción";
 
 const Dashboard = ({ onClose }) => {
   const [data, setData] = useState(null);
@@ -130,4 +131,4 @@ const Dashboard = ({ onClose }) => {
   );
 };
 
-export default Dashboard;
+export default Dashboard; 

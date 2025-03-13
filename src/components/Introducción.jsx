@@ -6,15 +6,13 @@ import PointFollowGame from './PointFollowGame';
 import FindObjectGame from './FindObjectGame';
 import ReactionGame from './ReactionGame';
 import D2RTest from './D2RTest';
-import Dashboard from './Dashboard';
 
 /* global GazeRecorderAPI, CY */
 
-const Introducción = ({ onClose }) => {
+const Introducción = ({ onClose, showThankYou }) => {
   const [step, setStep] = useState(0);
   const [reactionGameCompleted, setReactionGameCompleted] = useState(false);
   const [showD2RTest, setShowD2RTest] = useState(false);
-  const [showDashboard, setShowDashboard] = useState(false);
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [sessionData, setSessionData] = useState({ morphcast: [], gazeRecorder: [] });
   const [stopMorphcastFn, setStopMorphcastFn] = useState(null);
@@ -140,9 +138,7 @@ const Introducción = ({ onClose }) => {
   };
 
   const handleCloseTest = () => {
-    alert("El test ha finalizado. Se mostrará un dashboard con los resultados.");
-    setShowD2RTest(false);
-    setShowDashboard(true);
+    showThankYou(true);
   };
 
   useEffect(() => {
@@ -154,10 +150,6 @@ const Introducción = ({ onClose }) => {
   }, [step]);
 
   const renderContent = () => {
-    if (showDashboard) {
-      return <Dashboard onClose={onClose} />;
-    }
-
     if (showD2RTest) {
       return <D2RTest endTest={handleCloseTest} />;
     }
@@ -307,18 +299,18 @@ const Introducción = ({ onClose }) => {
             </div>
           </div>
         );
-        case 8:
-          return (
-            <div className="introduccion-container">
-              <h1>Test D2R</h1>
-              <p>
-                Ahora que has completado todas las actividades, es hora de realizar el test D2R.
-              </p>
-              <button className="btn" onClick={handleStartTest}>Ver Instrucciones</button>
-            </div>
-          );
-        default:
-          return null;
+      case 8:
+        return (
+          <div className="introduccion-container">
+            <h1>Test D2R</h1>
+            <p>
+              Ahora que has completado todas las actividades, es hora de realizar el test D2R.
+            </p>
+            <button className="btn" onClick={handleStartTest}>Ver Instrucciones</button>
+          </div>
+        );
+      default:
+        return null;
     }
   };
 

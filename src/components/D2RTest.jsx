@@ -9,6 +9,7 @@ const D2RTest = ({ startTest, endTest }) => {
     const [lettersGrid, setLettersGrid] = useState([]);
     const [score, setScore] = useState(0);
     const [isResultsVisible, setIsResultsVisible] = useState(false);
+    const [showThankYou, setShowThankYou] = useState(false); // Nuevo estado para el mensaje de agradecimiento
     const [currentRow, setCurrentRow] = useState(0);
     const [timeLeft, setTimeLeft] = useState(20);
     const [rowTimer, setRowTimer] = useState(null);
@@ -157,6 +158,16 @@ const D2RTest = ({ startTest, endTest }) => {
 
     const isCellLocked = (cellRow) => cellRow < currentRow;
 
+    const handleCloseTest = () => {
+        setIsResultsVisible(false);
+        setShowThankYou(true);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("userId"); // Eliminar el user_id del localStorage
+        window.location.href = "/login"; // Redirigir a la página de inicio de sesión
+    };
+
     return (
         <div>
             {isInstructionsVisible && (
@@ -187,7 +198,7 @@ const D2RTest = ({ startTest, endTest }) => {
                 </motion.div>
             )}
 
-            {!isInstructionsVisible && !isTestStarted && !isResultsVisible && (
+            {!isInstructionsVisible && !isTestStarted && !isResultsVisible && !showThankYou && (
                 <motion.div className="start-screen">
                     <motion.button
                         whileHover={{ scale: 1.1 }}
@@ -242,11 +253,21 @@ const D2RTest = ({ startTest, endTest }) => {
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={endTest}
+                        onClick={handleCloseTest}
                     >
-                        Ver Resultados
+                        Cerrar Test
                     </motion.button>
                 </motion.div>
+            )}
+
+            {showThankYou && (
+                <div className="dashboard-container">
+                    <h1>Gracias por usar FocusWare</h1>
+                    <p>¡Hasta la próxima!</p>
+                    <button onClick={handleLogout} className="close-button">
+                        Cerrar Sesión
+                    </button>
+                </div>
             )}
         </div>
     );
