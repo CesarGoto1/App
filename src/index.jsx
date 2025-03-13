@@ -5,17 +5,21 @@ import './index.css';
 import App from './App';
 import Login from './components/Login';
 import Register from './components/Register';
-import Dashboard from './components/Dashboard'; // Importa el componente Dashboard
+import Dashboard from './components/Dashboard';
+import UserSelection from './components/UserSelection';
+import PantallaBienvenida from './components/PantallaBienvenida';
+import Results from './components/Results'; // Importa el componente Results
 import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const Index = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [showRegister, setShowRegister] = useState(false);
   const [isTitleHidden, setIsTitleHidden] = useState(false);
-  const [showDashboard, setShowDashboard] = useState(false); // Estado para controlar la visibilidad del Dashboard
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null); // Estado para controlar el usuario seleccionado
+  const [showWelcomeScreen, setShowWelcomeScreen] = useState(false); // Estado para controlar la pantalla de bienvenida
+  const [showResults, setShowResults] = useState(false); // Estado para controlar la pantalla de resultados
 
   useEffect(() => {
     localStorage.removeItem('token');
@@ -37,10 +41,19 @@ const Index = () => {
     };
   }, []);
 
-  const handleLoginSuccess = (token) => {
+  const handleLoginSuccess = (token, userId) => {
     setToken(token);
     localStorage.setItem('token', token);
+    localStorage.setItem('userId', userId);
     setIsAuthenticated(true);
+  
+    // Verifica si el usuario es admin
+    if (userId === 'adminFocusWare') {
+      setSelectedUserId(null); // Asegúrate de mostrar la selección de usuario
+    } else {
+      setSelectedUserId(userId); // Redirige directamente al Dashboard del usuario
+      setShowWelcomeScreen(true); // Muestra la pantalla de bienvenida
+    }
   };
 
   const handleRegisterSuccess = () => {
@@ -52,11 +65,29 @@ const Index = () => {
     setToken(null);
     localStorage.removeItem('token');
     setIsAuthenticated(false);
+    setSelectedUserId(null); // Asegúrate de ocultar la selección de usuario al cerrar sesión
+    setShowWelcomeScreen(false); // Asegúrate de ocultar la pantalla de bienvenida
+    setShowResults(false); // Asegúrate de ocultar la pantalla de resultados
+  };
+
+  const handleSelectUser = (userId) => {
+    setSelectedUserId(userId);
+    setShowDashboard(true);
   };
 
   const handleCloseDashboard = () => {
     setShowDashboard(false);
-    setIsAuthenticated(false); // Redirigir al inicio de sesión
+    setSelectedUserId(null); // Asegúrate de mostrar la selección de usuario
+  };
+
+  const handleCloseUserSelection = () => {
+    setIsAuthenticated(false); // Regresar al login
+    setSelectedUserId(null); // Asegúrate de ocultar la selección de usuario
+  };
+
+  const handleFinishWelcomeScreen = () => {
+    setShowWelcomeScreen(false);
+    setShowResults(true); // Muestra la pantalla de resultados
   };
 
   return (
@@ -72,9 +103,13 @@ const Index = () => {
 
       {isAuthenticated ? (
         showDashboard ? (
-          <Dashboard onClose={handleCloseDashboard} />
+          <Dashboard userId={selectedUserId} onClose={handleCloseDashboard} />
+        ) : showWelcomeScreen ? (
+          <PantallaBienvenida onFinish={handleFinishWelcomeScreen} />
+        ) : showResults ? (
+          <Results />
         ) : (
-          <App onLogout={handleLogout} />
+          <UserSelection onSelectUser={handleSelectUser} onClose={handleCloseUserSelection} />
         )
       ) : (
         <div className="auth-container">
@@ -115,12 +150,7 @@ const Index = () => {
   );
 };
 
-export default Index;
-
-root.render(
-  <React.StrictMode>
-    <Index />
-  </React.StrictMode>
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Index />);
 
 reportWebVitals();

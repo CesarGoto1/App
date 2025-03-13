@@ -9,6 +9,12 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Validación del usuario adminFocusWare
+    if (email === 'adminFocusWare' && password === 'adminfocusware123') {
+      onLoginSuccess('admin-token', 'adminFocusWare');
+      return;
+    }
+
     const response = await fetch('https://backend-production-4e30.up.railway.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -19,7 +25,7 @@ const Login = ({ onLoginSuccess }) => {
 
     if (data.success) {
       localStorage.setItem("userId", data.user_id);
-      onLoginSuccess(data.user_id);
+      onLoginSuccess(data.token, data.user_id);
     } else {
       alert('Login failed');
     }

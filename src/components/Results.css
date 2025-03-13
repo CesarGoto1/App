@@ -95,9 +95,34 @@
 .camera-feed {
   width: 100%;
   max-width: 600px;
-
   border-radius: 10px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.game-with-camera {
+  --input-focus: #2d8cf0;
+  --font-color: #fefefe;
+  --font-color-sub: #7e7e7e;
+  --bg-color: #111;
+  --bg-color-alt: #7e7e7e;
+  --main-color: #fefefe;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centrar contenido horizontalmente */
+  gap: 20px;
+  background: var(--bg-color);
+  border-radius: 5px;
+  padding: 20px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-frame {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Results.css */

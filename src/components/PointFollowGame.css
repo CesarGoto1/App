@@ -69,23 +69,23 @@ body {
     width: 80%; /* Hacer los botones más anchos */
     height: 50px; /* Aumentar la altura de los botones */
     border-radius: 5px;
-    border: 2px solid #2ed573; /* Borde verde */
-    background-color: #ff4757; /* Fondo rojo */
-    box-shadow: 4px 4px #2ed573; /* Sombra verde */
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
     font-size: 17px;
     font-weight: 600;
-    color: #ffffff; /* Texto blanco */
+    color: var(--font-color);
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Elimina la transformación */
+    transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center; /* Centrar el contenido del botón */
+    margin: 10px 0; /* Añadir margen vertical para separar los botones */
 }
 
 .start-button:hover,
 .close-button:hover {
-    background-color: #ff6b81; /* Fondo rosa en hover */
-    /* Elimina la transformación en hover */
+    background-color: var(--input-focus);
 }
 
 .game-over {

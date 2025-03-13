@@ -302,6 +302,14 @@ def get_results():
 
     with conn:
         with conn.cursor() as cursor:
+            # Obtener el email del usuario
+            cursor.execute('SELECT email FROM users WHERE id = %s', (user_id,))
+            user_email = cursor.fetchone()
+            if user_email:
+                user_email = user_email[0]
+            else:
+                user_email = None
+
             cursor.execute('''
                 SELECT id, user_id, session_date, avg_attention, avg_gaze_x, avg_gaze_y, raw_data 
                 FROM session_metrics 
@@ -363,10 +371,31 @@ def get_results():
     conn.close()
     return jsonify({
         'success': True,
+        'email': user_email,
         'sessionData': session_result,
         'referenceData': reference_result,
         'comparativeData': comparative_result
     }), 200
+
+@app.route('/get_users', methods=['GET'])
+def get_users():
+    conn = get_db_connection()
+    if conn is None:
+        return jsonify({'success': False, 'message': 'Error en la conexión a la base de datos'}), 500
+
+    with conn:
+        with conn.cursor() as cursor:
+            cursor.execute('SELECT id, email FROM users')
+            users = cursor.fetchall()
+
+    conn.close()
+
+    if users:
+        user_list = [{'id': user[0], 'email': user[1]} for user in users]
+        return jsonify({'success': True, 'users': user_list}), 200
+    else:
+        return jsonify({'success': False, 'message': 'No se encontraron usuarios'}), 404
+
 
 # =====================================================
 # Inicio del servidor

@@ -160,7 +160,9 @@ const Introducción = ({ onClose, showThankYou }) => {
           <div className="introduccion-container">
             <h1>Bienvenido a FocusWare</h1>
             <p>
+            <center>
               Este programa está diseñado para evaluar tu nivel de atención mediante el uso de tecnologías avanzadas de reconocimiento facial y rastreo ocular.
+              </center>
             </p>
             <button className="btn" onClick={handleNextStep}>Continuar</button>
           </div>
@@ -169,8 +171,9 @@ const Introducción = ({ onClose, showThankYou }) => {
         return (
           <div className="introduccion-container">
             <h1>Verificación de Cámara</h1>
-            <p>
+            <p><center>
               A continuación, asegúrate de que tu cámara esté funcionando correctamente. Recuerda que tu video se seguirá capturando mientras realizas las actividades
+              </center>
             </p>
             <div className="camera-verification">
               <Webcam

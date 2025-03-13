@@ -1,4 +1,5 @@
 .introduccion-container {
+  max-width: 900px;
   --input-focus: #2d8cf0;
   --font-color: #fefefe;
   --font-color-sub: #7e7e7e;
@@ -32,6 +33,7 @@
   margin-bottom: 15px;
   line-height: 1.5;
 }
+
 .camera-verification {
   display: flex;
   justify-content: center;
@@ -41,9 +43,9 @@
 }
 
 .camera-feed {
-    border-radius: 15px; /* Esquinas redondeadas */
-    
+  border-radius: 15px; /* Esquinas redondeadas */
 }
+
 .game-with-camera {
   display: flex;
   flex-direction: row;
@@ -56,4 +58,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.introduccion-container .btn {
+  all: unset; /* Ignorar cualquier configuración previa */
+  width: 80%; /* Hacer los botones más anchos */
+  height: 50px; /* Aumentar la altura de los botones */
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar el contenido del botón */
+  margin: 10px 0; /* Añadir margen vertical para separar los botones */
+}
+
+.introduccion-container .btn:hover {
+  background-color: var(--input-focus);
 }
